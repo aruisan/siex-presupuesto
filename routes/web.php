@@ -1,0 +1,36 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::post('importar/tablas', 'ImportarController@importar')->name('importar.tablas');
+Route::get('importar/tablas', 'ImportarController@index')->name('importar.inicio');
+
+
+Route::get('rubros', 'RubroController@index')->name('rubro.index');
+Route::get('rubros/create', 'RubroController@create')->name('rubro.create');
+Route::post('rubros', 'RubroController@store')->name('rubro.store');
+
+
+Route::get('cdps', 'CdpController@index')->name('cdp.index');
+Route::get('cdps/create', 'CdpController@create')->name('cdp.create');
+Route::post('cdps', 'CdpController@store')->name('cdp.store');
+Route::get('cdps/autorizaciones', 'CdpController@autorizaciones')->name('cdp.autorizaciones');
+Route::post('cdps/autorizar', 'CdpController@autorizar')->name('cdp.autorizar');
