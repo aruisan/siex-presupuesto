@@ -28,9 +28,9 @@ Route::get('rubros', 'RubroController@index')->name('rubro.index');
 Route::get('rubros/create', 'RubroController@create')->name('rubro.create');
 Route::post('rubros', 'RubroController@store')->name('rubro.store');
 
-Route::get('bpin', 'BpinController@index')->name('bpin.index');
-Route::get('bpin/create', 'BpinController@create')->name('bpin.create');
-Route::post('bpin', 'BpinController@store')->name('bpin.store');
+Route::get('bpin', 'BPinController@index')->name('bpin.index');
+Route::get('bpin/create', 'BPinController@create')->name('bpin.create');
+Route::post('bpin', 'BPinController@store')->name('bpin.store');
 
 
 Route::get('cdps', 'CdpController@index')->name('cdp.index');
