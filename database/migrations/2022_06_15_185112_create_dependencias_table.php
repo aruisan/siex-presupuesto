@@ -15,7 +15,9 @@ class CreateDependenciasTable extends Migration
     {
         Schema::create('dependencias', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('code');
             $table->string('nombre');
+            $table->string('encargado');
             $table->timestamps();
         });
     }

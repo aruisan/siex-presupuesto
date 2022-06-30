@@ -44,6 +44,8 @@ class RubroController extends Controller
         $vigencias_gastos = VigenciaGastos::all(); 
         $dependencias = Dependencia::all();
 
+        
+
         return view('rubro.create', compact('dependencias','cpcs' , 'detalles_Sectorial' , 'fuentes_de_financiacion' , 'politicas_publicas' , 'productos_mgas' ,
              'programa_mgas' , 'pucs' , 'secciones_presupuestales' , 'secciones_presupuestales_adicionales' , 'sectores' , 'situaciones_de_fondos' , 'terceros' , 'tipos_de_normas' , 'vigencias_gastos'));
     }
