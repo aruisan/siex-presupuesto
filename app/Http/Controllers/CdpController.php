@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Cdp;
 use App\BPin;
 use App\Rubro;
+use App\Dependencia;
 use Illuminate\Http\Request;
 
 class CdpController extends Controller
@@ -17,6 +18,7 @@ class CdpController extends Controller
 
     public function create(){
         $bpins = BPin::all();
+        $dependencias = Dependencia::all();
         $rubros = Rubro::where('dependencia_id', auth()->user()->dependencia_id)->get();
         $rubros_json = Rubro::where('dependencia_id', auth()->user()->dependencia_id)->get()->map(function($e){
             return [
@@ -29,7 +31,7 @@ class CdpController extends Controller
                 'vigencia_gastos' => $e->vigencia_gastos
             ];
         });
-        return view('cdp.create', compact('rubros', 'bpins', 'rubros_json'));
+        return view('cdp.create', compact('rubros', 'bpins', 'rubros_json', 'dependencias'));
     }
 
     public function store(Request $request){

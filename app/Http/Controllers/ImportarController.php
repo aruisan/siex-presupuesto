@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Imports\CpcImport;
-use Illuminate\Http\Request;
+use App\Imports\BPinImport;
 
+use Illuminate\Http\Request;
 use App\Imports\SectorImport;
 use App\Imports\TerceroImport;
 use App\Imports\TipoNormasImport;
+use App\Imports\DependenciaImport;
 use App\Imports\ProductoMgaImport;
 use App\Imports\ProgramaMgaImport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -42,8 +44,10 @@ class ImportarController extends Controller
             Excel::import(new SituacionDeFondosImport, $request->file('file_import'));
             Excel::import(new TerceroImport, $request->file('file_import'));
             Excel::import(new TipoNormasImport, $request->file('file_import'));
-            */ 
             Excel::import(new VigenciaGastosImport, $request->file('file_import'));
+            Excel::import(new DependenciaImport, $request->file('file_import'));
+            */ 
+            Excel::import(new BPinImport, $request->file('file_import'));
             /*
             */
         endif;

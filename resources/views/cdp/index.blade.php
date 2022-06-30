@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">Rubros </div>
                 <div class="card-body">
-                    <a href="{{route('cdp.create')}}" class="btn btn-primary">Cdps</a>
+                    <a href="{{route('cdp.create')}}" class="btn btn-primary">Solicitud Cdps</a>
 
                     <div class="table-responsive">
                         <table class="table table-bordered">
