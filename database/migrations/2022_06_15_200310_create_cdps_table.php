@@ -17,6 +17,7 @@ class CreateCdpsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('valor');
             $table->integer('rubro_id');
+            $table->integer('bpin_id')->nullable();
             $table->timestamps();
         });
     }

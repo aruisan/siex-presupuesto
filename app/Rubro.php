@@ -87,4 +87,17 @@ class Rubro extends Model
     public function getSaldoAttribute(){
         return $this->valor -$this->suma_cdps;
     }
+
+    public function solicitudes_cdps(){
+        return $this->hasMany(SolicitudCdp::class);
+    }
+
+    public function getDisponibleAttribute(){
+        if($this->solicitudes_cdps->count() > 0 ){
+            return $this->valor - $this->colicitudes_cdps->sum('valor');
+        }else{
+            return $this->valor;
+        }
+
+    }
 }

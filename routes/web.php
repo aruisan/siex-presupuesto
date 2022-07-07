@@ -19,22 +19,23 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
-Route::post('importar/tablas', 'ImportarController@importar')->name('importar.tablas');
-Route::get('importar/tablas', 'ImportarController@index')->name('importar.inicio');
-
-
-Route::get('rubros', 'RubroController@index')->name('rubro.index');
-Route::get('rubros/create', 'RubroController@create')->name('rubro.create');
-Route::post('rubros', 'RubroController@store')->name('rubro.store');
-
-Route::get('bpin', 'BPinController@index')->name('bpin.index');
-Route::get('bpin/create', 'BPinController@create')->name('bpin.create');
-Route::post('bpin', 'BPinController@store')->name('bpin.store');
+Route::group(['middleware' => ['web','auth']], function () {
+    Route::post('importar/tablas', 'ImportarController@importar')->name('importar.tablas');
+    Route::get('importar/tablas', 'ImportarController@index')->name('importar.inicio');
 
 
-Route::get('cdps', 'CdpController@index')->name('cdp.index');
-Route::get('cdps/create', 'CdpController@create')->name('cdp.create');
-Route::post('cdps', 'CdpController@store')->name('cdp.store');
-Route::get('cdps/autorizaciones', 'CdpController@autorizaciones')->name('cdp.autorizaciones');
-Route::post('cdps/autorizar', 'CdpController@autorizar')->name('cdp.autorizar');
+    Route::get('rubros', 'RubroController@index')->name('rubro.index');
+    Route::get('rubros/create', 'RubroController@create')->name('rubro.create');
+    Route::post('rubros', 'RubroController@store')->name('rubro.store');
+
+    Route::get('bpin', 'BPinController@index')->name('bpin.index');
+    Route::get('bpin/create', 'BPinController@create')->name('bpin.create');
+    Route::post('bpin', 'BPinController@store')->name('bpin.store');
+
+
+    Route::get('cdps', 'CdpController@index')->name('cdp.index');
+    Route::get('cdps/create', 'CdpController@create')->name('cdp.create');
+    Route::post('cdps', 'CdpController@store')->name('cdp.store');
+    Route::get('cdps/autorizaciones', 'CdpController@autorizaciones')->name('cdp.autorizaciones');
+    Route::post('cdps/autorizar', 'CdpController@autorizar')->name('cdp.autorizar');
+});

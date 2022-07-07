@@ -112,34 +112,38 @@
                 BPin No. 
             </td>
             <td>
-               <select name="bpin" class="form-control" id="select_bpin">
+               <select name="bpin" class="form-control modulo_bpin" id="select_bpin">
                     @foreach($bpins->unique('cod_proyecto') as $bpin)
                         <option value="{{$bpin->id}}">{{$bpin->cod_proyecto}}</option>
                     @endforeach()
                 </select>
             </td>
             <td>
-               Vigencia
+                <span class="modulo_bpin">
+                    Vigencia
+                </span>
             </td>
             <td>
-               2022
+                <span class="modulo_bpin">
+                   2022
+                </span>
             </td>
         </tr>
-         <tr>
+         <tr class="modulo_bpin">
              <td>
                 NOMBRE
             </td>
              <td colspan="7" id="nombre_proyecto">
             </td>
         </tr>
-         <tr>
+         <tr class="modulo_bpin">
              <td>
                 META
             </td>
              <td colspan="7" id="meta">
             </td>
         </tr>
-         <tr>
+         <tr class="modulo_bpin">
              <td>
                 NOMBRE
             </td>
@@ -176,6 +180,53 @@
                 VALOR SOLICITADO
             </td>
         </tr>
+        <tr class="text-center">
+            <td colspan="2">
+                <select class="form-control" name="rubro_id" id="rubro">
+                    @foreach($rubros as $rubro)
+                        <option value="{{$rubro->id}}">
+                            {{$rubro->puc->codigo}}
+                        </option>
+                    @endforeach
+                </select>
+            </td>
+            <td colspan="3" id="nombre_rubro">
+                
+            </td>
+            <td id="valor_definitivo_rubro">
+               
+            </td>
+            <td id="valor_disponible_rubro">
+                
+            </td>
+            <td>
+                <input class="form-control valor_solicitar_rubro" type="number" name="valor_solicitar_rubro[]">
+            </td>
+        </tr>
+         <tr>
+            <td colspan="8" class="td-titulos table-success text-center">
+                <span class="text-center">
+                    CATALOGO DE PRODUCTOS Y PLAN DE ADQUISICIONES
+                </span>
+            </td>
+        </tr>
+         <tr class="text-center">
+            <td colspan="2">
+                Catalogo del producto cpc
+            </td>
+            <td colspan="3" id="nombre_rubro">
+                
+            </td>
+            <td id="valor_definitivo_rubro">
+               
+            </td>
+            <td id="valor_disponible_rubro">
+                
+            </td>
+            <td>
+                <input class="form-control valor_solicitar_rubro" type="number" name="valor_solicitar_rubro[]">
+            </td>
+        </tr>
     </table>
 </div>
 @endsection
@@ -191,7 +242,17 @@
         $(document).ready(function(){
             cambiar_secretaria();
             cambiar_bpins();
+            tipo_gasto();
+            cambiar_rubro();
         });
+
+        $('#rubro').on('change', function(){
+            cambiar_rubro()
+        })
+
+        $('#tipo_gasto').on('change', function(){
+            tipo_gasto()
+        })
         
         $('#select_dependencia').on('change', function(){
             cambiar_secretaria();
@@ -212,6 +273,24 @@
 
             $('#valor_solicitar_total').html(`$${t_valor_solicitar}`);
         });
+
+        const cambiar_rubro = () => {
+            let id = $('#rubro').val();
+            let rubro = rubros.find(e => e.id == id);
+            console.log(rubro);
+            $('#nombre_rubro').html(rubro.puc.categoria);
+            $('#valor_definitivo_rubro').html(rubro.valor);
+            $('#valor_disponible_rubro').html(rubro.disponible);
+        }
+
+        const tipo_gasto = () => {
+             let data =  $('#tipo_gasto').val();
+             if(data == 'Funcionamiento'){
+                $('.modulo_bpin , #tabla-actividades').hide();
+             }else{
+                 $('.modulo_bpin , #tabla-actividades').show();
+             }
+        }
 
         const cambiar_secretaria = () => {
             let secretaria_id = $('#select_dependencia').val();
