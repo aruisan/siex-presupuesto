@@ -28,7 +28,9 @@ class CdpController extends Controller
                 "producto" => $e->producto_mga,
                 'programa' => $e->programa_mga,
                 'sector' => $e->sector,
-                'vigencia_gastos' => $e->vigencia_gastos
+                'valor' => $e->valor,
+                'vigencia_gastos' => $e->vigencia_gastos,
+                'disponible' => $e->disponible
             ];
         });
         return view('cdp.create', compact('rubros', 'bpins', 'rubros_json', 'dependencias'));

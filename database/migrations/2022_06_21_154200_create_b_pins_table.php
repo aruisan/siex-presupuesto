@@ -39,6 +39,7 @@ class CreateBPinsTable extends Migration
             $table->integer('rubro_id');
             $table->string('catalogo_cpc');
             $table->string('plan_adquisiciones');
+            $table->integer('bpin_id')->nullable();
             $table->integer('objeto');
             $table->timestamps();
         });
