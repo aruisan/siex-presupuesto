@@ -13,4 +13,8 @@ class BPin extends Model
     public function rubro(){
         return $this->belongsTo(Rubro::class, 'rubro_id');
     }
+
+    public function secretaria(){
+        return $this->belongsTo(Dependencia::class, 'secretaria_id');
+    }
 }
