@@ -38,4 +38,6 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::post('cdps', 'CdpController@store')->name('cdp.store');
     Route::get('cdps/autorizaciones', 'CdpController@autorizaciones')->name('cdp.autorizaciones');
     Route::post('cdps/autorizar', 'CdpController@autorizar')->name('cdp.autorizar');
+
+    Route::get('pubs-padres', 'PubController@padres')->name('pubs.padres');
 });
