@@ -34,7 +34,7 @@ class RubroController extends Controller
         $politicas_publicas = PoliticaPublica::all();
         $productos_mgas = ProductoMga::all();
         $programa_mgas = ProgramaMga::all();
-        $pucs = PucPresupuesto::all()->filter(function($p){ return $p->id > 15260; });
+        $pucs = PucPresupuesto::all()->filter(function($p){ return $p->id > 15260 && $p->hijos->count() == 0; });
         $secciones_presupuestales = SeccionPresupuestal::all();
         $secciones_presupuestales_adicionales = SeccionPresupuestalAdicional::all();
         $sectores = Sector::all();
