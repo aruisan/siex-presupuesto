@@ -35,7 +35,6 @@ class VigenciaController extends Controller
 {
     public function presupuesto($id){
 
-
         $vigencia = $id;
         $pucs = PucPresupuesto::all();
         $cpcs = Cpc::all();

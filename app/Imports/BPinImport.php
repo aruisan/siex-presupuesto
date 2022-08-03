@@ -15,7 +15,7 @@ class BPinImport implements ToModel, WithHeadingRow
     */
 
     public function  __construct(string $vigencia) {
-        $this->vigencia= $vigencia;
+        $this->vigencia = $vigencia;
     }   
 
     public function model(array $row)
