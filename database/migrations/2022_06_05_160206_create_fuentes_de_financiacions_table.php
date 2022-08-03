@@ -17,6 +17,7 @@ class CreateFuentesDeFinanciacionsTable extends Migration
             $table->bigIncrements('id');
             $table->String('codigo', 50)->nullable();
             $table->String('descripcion', 400)->nullable();
+            $table->integer('vigencia_id');
             $table->timestamps();
         });
     }

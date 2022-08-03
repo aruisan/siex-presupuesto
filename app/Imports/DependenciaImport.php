@@ -4,8 +4,9 @@ namespace App\Imports;
 
 use App\Dependencia;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class DependenciaImport implements ToModel
+class DependenciaImport implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
@@ -14,12 +15,10 @@ class DependenciaImport implements ToModel
     */
     public function model(array $row)
     {
-        if(!is_null($row[0])):
-            return new Dependencia([
-                'code' => isset($row[0]) ? $row[0] : '',
-                'nombre' => isset($row[1]) ? $row[1] : '',
-                'encargado' => isset($row[2]) ? $row[2] : ''
-            ]);
-        endif;
-    }
+        return new Dependencia([
+            'code' => $row['code'],
+            'nombre' => $row['nombre'],
+            'encargado' => $row['encargado']
+        ]);
+}
 }

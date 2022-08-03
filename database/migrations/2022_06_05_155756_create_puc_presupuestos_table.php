@@ -19,6 +19,7 @@ class CreatePucPresupuestosTable extends Migration
             $table->String('categoria', 400)->nullable();
             $table->Boolean('municipio');
             $table->Integer('padre_id')->nullable();
+            $table->integer('vigencia_id');
             $table->timestamps();
         });
     }

@@ -22,6 +22,8 @@
     <!-- Custom styles for this select 2-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.csss" rel="stylesheet"/>
+    <!-- Custom styles for bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <!-- Custom styles for this template-->
     <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
 
@@ -31,7 +33,7 @@
 
         }
     </style>
-    
+
 
 </head>
 
@@ -78,11 +80,44 @@
                 </a>
             </li>
 
-             <li class="nav-item">
-                <a class="nav-link" href="{{route('rubro.index')}}">
+            {{-- <li class="nav-item">
+                <a class="nav-link" href="{{route('presupuesto.index')}}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Presupuesto</span></a>
-            </li>
+            </li> --}}
+
+            {{-- <div class="btn-group dropend nav-item">
+
+                <a class="nav-link dropdown-toggle dropdown-toggle-split" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span> Presupuesto </span>
+                </a>
+
+                <ul class="dropdown-menu">
+                  <li class="nav-item">
+                    <a class="dropdown-item " href="{{ route('vigencia.create') }}">Crear Vigencia
+                    </a>
+                    </li>
+                </ul>
+            </div> --}}
+            <div class="nav-link" id="accordionFlushExample">
+                <div class="">
+                    <h2 class="" id="flush-headingOne">
+                    <a class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        Presupuesto
+                    </a>
+                    </h2>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                    <div class=""><li class="nav-item">
+                        <a class="dropdown-item " href="{{ route('vigencia.create') }}">Crear Vigencia</a>
+                    </li></div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
     {{--
              <li class="nav-item">
                 <a class="nav-link" href="{{route('bpin.index')}}">
@@ -383,6 +418,9 @@
 
     <!-- Custom scripts for select 2-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <!-- Custom scripts for Bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset('js/sb-admin-2.min.js')}}"></script>

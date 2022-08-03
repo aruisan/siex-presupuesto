@@ -7,6 +7,7 @@ use App\BPin;
 
 use App\Sector;
 use App\Tercero;
+use App\Vigencia;
 use App\Dependencia;
 use App\ProductoMga;
 use App\ProgramaMga;
@@ -23,6 +24,7 @@ use Illuminate\Http\Request;
 use App\Imports\SectorImport;
 use App\FuentesDeFinanciacion;
 use App\Imports\TerceroImport;
+use Illuminate\Support\Carbon;
 use App\Imports\TipoNormasImport;
 use App\Imports\DependenciaImport;
 use App\Imports\ProductoMgaImport;
@@ -57,13 +59,19 @@ class ImportarController extends Controller
         $vigencia_gastos = VigenciaGastos::all();
         $bpins = BPin::all();
         $dependencias = Dependencia::all();
+        $vigencias = Vigencia::all();
+        $añoactual = Carbon::now()->year;
+        $vigencias = Vigencia::where('vigencia', '=', $añoactual)->get();
+
+
          return view('import.index', compact(
-            'pucs', 'cpcs', 'fuentes', 'politicas', 'productos_mga', 'programas_mga', 'detalles_sectoriales', 'seccion_presupuestales', 'seccion_presupuestales_adicionales', 'sectores',
+            'pucs', 'cpcs', 'fuentes', 'politicas','vigencias', 'productos_mga', 'programas_mga', 'detalles_sectoriales', 'seccion_presupuestales', 'seccion_presupuestales_adicionales', 'sectores',
             'situacion_fondos', 'terceros', 'tipos_normas', 'vigencia_gastos', 'bpins', 'dependencias'
          ));
     }
 
     public function importar(Request $request){
+
         $select = $request->select_tabla;
         if($request->hasFile('file_import')):
             if($select == 'cpcs'){

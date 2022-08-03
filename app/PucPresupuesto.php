@@ -17,7 +17,7 @@ class PucPresupuesto extends Model
     public function padre(){
         return $this->belongsTo(PucPresupuesto::class, 'padre_id');
     }
-    
+
     public function getCodeArrayAttribute(){
         return explode('.', $this->codigo);
     }

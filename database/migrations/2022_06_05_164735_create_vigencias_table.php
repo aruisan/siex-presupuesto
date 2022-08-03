@@ -15,11 +15,13 @@ class CreateVigenciasTable extends Migration
     {
         Schema::create('pre_vigencias', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('vigencia');
+            $table->enum('tipo', ['1', '0']);
             $table->string('n_decreto')->nullable();
             $table->string('ruta')->nullable();
             $table->date('fecha')->nullable();
             $table->integer('presupuesto_inicial')->default(0);
-            $table->integer('owner_id');
+            $table->integer('owner_id')->nullable();//cambie a nullable para probar
             $table->timestamps();
         });
     }

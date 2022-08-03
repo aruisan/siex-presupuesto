@@ -18,6 +18,7 @@ class CreateCdpsTable extends Migration
             $table->integer('valor');
             $table->integer('rubro_id');
             $table->integer('bpin_id')->nullable();
+            $table->integer('vigencia_id');
             $table->timestamps();
         });
     }

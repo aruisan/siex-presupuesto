@@ -4,8 +4,9 @@ namespace App\Imports;
 
 use App\ProgramaMga;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class ProgramaMgaImport implements ToModel
+class ProgramaMgaImport implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
@@ -15,12 +16,10 @@ class ProgramaMgaImport implements ToModel
 
     public function model(array $row)
     {
-        if(!is_null($row[0])):
-            return new ProgramaMga([
-                'codigo' => isset($row[0]) ? $row[0] : '',
-                'descripcion' => isset($row[1]) ? $row[1] : '',
-                'sector' => isset($row[2]) ? $row[2] : ''
-            ]);
-        endif;
+        return new ProgramaMga([
+            'codigo' => $row['codigo'],
+            'descripcion' => $row['descripcion'],
+            'sector' => $row['sector']
+        ]);
     }
 }

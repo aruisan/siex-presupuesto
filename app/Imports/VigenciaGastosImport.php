@@ -4,8 +4,9 @@ namespace App\Imports;
 
 use App\VigenciaGastos;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class VigenciaGastosImport implements ToModel
+class VigenciaGastosImport implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
@@ -15,11 +16,9 @@ class VigenciaGastosImport implements ToModel
 
     public function model(array $row)
     {
-        if(!is_null($row[0])):
-            return new VigenciaGastos([
-                'codigo' => isset($row[0]) ? $row[0] : '',
-                'descripcion' => isset($row[1]) ? $row[1] : ''
-            ]);
-        endif;
+        return new VigenciaGastos([
+            'codigo' => $row['codigo'],
+            'descripcion' => $row['descripcion']
+        ]);
     }
 }

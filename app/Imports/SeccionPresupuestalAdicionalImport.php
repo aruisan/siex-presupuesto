@@ -4,8 +4,9 @@ namespace App\Imports;
 
 use App\SeccionPresupuestalAdicional;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class SeccionPresupuestalAdicionalImport implements ToModel
+class SeccionPresupuestalAdicionalImport implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
@@ -15,11 +16,10 @@ class SeccionPresupuestalAdicionalImport implements ToModel
 
     public function model(array $row)
     {
-        if(!is_null($row[0])):
-            return new SeccionPresupuestalAdicional([
-                'codigo' => isset($row[0]) ? $row[0] : '',
-                'descripcion' => isset($row[1]) ? $row[1] : ''
-            ]);
-        endif;
+        return new SeccionPresupuestalAdicional([
+            'codigo' => $row['codigo'],
+            'descripcion' => $row['descripcion']
+        ]);
     }
 }
+

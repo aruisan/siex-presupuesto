@@ -4,8 +4,9 @@ namespace App\Imports;
 
 use App\PucPresupuesto;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class PucPresupuestoImport implements ToModel
+class PucPresupuestoImport implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
@@ -14,13 +15,10 @@ class PucPresupuestoImport implements ToModel
     */
     public function model(array $row)
     {
-        \Log::debug($row);
-        if(!is_null($row[0])):
             return new PucPresupuesto([
-                'codigo' => isset($row[0]) ? $row[0] : '',
-                'categoria' => isset($row[1]) ? $row[1] : '',
-                'municipio' => isset($row[2]) ? $row[2] : ''
+                'codigo' => $row['codigo'],
+                'categoria' => $row['categoria'],
+                'municipio' => $row['municipio']
             ]);
-        endif;
     }
 }

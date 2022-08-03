@@ -11,6 +11,9 @@
                     @csrf
                         <select name="select_tabla" id="select_tabla" class="form-control">
                         </select>
+                        {{-- @foreach ($vigencias as $vigencia)
+                        <input type="hidden" name="vigencia_id" value="{{$vigencia->id}}">
+                        @endforeach --}}
                         <input class="form-control" name="file_import" type="file"/>
                         <button type="submit" class="btn btn-primary">Importar</button>
                    </form>
@@ -19,7 +22,7 @@
         </div>
     </div>
 
-    
+
     <div class="row justify-content-center row-table" id="row-pucs">
         <div class="col-md-12">
             <div class="table-responsive">
@@ -324,8 +327,8 @@
                 </table>
             </div>
         </div>
-    </div> 
-    
+    </div>
+
     <div class="row justify-content-center row-table" id="row-vigencia-gastos">
         <div class="col-md-12">
             <div class="table-responsive">
@@ -447,7 +450,7 @@
         const select_load = () => {
             tablas.forEach(e => {
                 $('#select_tabla').append(`<option value="${e}">${e} Importar</option>`);
-            }); 
+            });
         }
 
         const table = () =>{
@@ -458,6 +461,6 @@
             });
         }
 
-        
+
     </script>
 @endsection
