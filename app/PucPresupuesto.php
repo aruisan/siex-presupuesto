@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PucPresupuesto extends Model
 {
-    protected $fillable = ['codigo', 'categoria', 'municipio'];
+    protected $fillable = ['codigo', 'categoria', 'municipio','vigencia_id'];
     protected $table = "pre_puc_presupuestos";
 
 

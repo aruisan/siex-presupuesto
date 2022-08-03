@@ -4,9 +4,8 @@ namespace App\Imports;
 
 use App\ProductoMga;
 use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class ProductoMgaImport implements ToModel, WithHeadingRow
+class ProductoMgaImport implements ToModel
 {
     /**
     * @param array $row
@@ -14,13 +13,20 @@ class ProductoMgaImport implements ToModel, WithHeadingRow
     * @return \Illuminate\Database\Eloquent\Model|null
     */
 
+    public function  __construct(string $vigencia) {
+        $this->vigencia = $vigencia;
+    }
+
     public function model(array $row)
     {
+        if(!is_null($row[0])):
             return new ProductoMga([
-                'codigo' => $row['codigo'],
-                'descripcion' => $row['descripcion'],
-                'sector' => $row['sector'],
-                'programa' => $row['programa']
+                'codigo' => isset($row[0]) ? $row[0] : '',
+                'descripcion' => isset($row[1]) ? $row[1] : '',
+                'sector' => isset($row[2]) ? $row[2] : '',
+                'programa' => isset($row[3]) ? $row[3] : '',
+                'vigencia_id' => $this->vigencia
             ]);
+        endif;
     }
 }

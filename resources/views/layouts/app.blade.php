@@ -74,12 +74,12 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             @if (auth()->user()->dependencia_id == 1)
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="{{ route('importar.inicio') }}">
                         <i class="fas fa-fw fa-cog"></i>
                         <span>Importar Tablas</span>
                     </a>
-                </li>
+                </li> --}}
 
                 {{-- <li class="nav-item">
                 <a class="nav-link" href="{{route('presupuesto.index')}}">
@@ -101,27 +101,24 @@
                     </li>
                 </ul>
             </div> --}}
-                <div class="nav-link" id="accordionFlushExample">
-                    <div class="">
-                        <h2 class="" id="flush-headingOne">
-                            <a class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                aria-controls="flush-collapseOne" style="background-color: inherit ; color:white">
-                                Presupuesto
-                            </a>
-                        </h2>
-                        <div id="flush-collapseOne" class="accordion-collapse collapse"
-                            aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                            <div class="">
-                                <li class="nav-item">
-                                    <a class="dropdown-item " href="{{ route('vigencia.create') }}"
-                                        style="color: white;">Crear Vigencia</a>
-                                </li>
-                            </div>
-                        </div>
-                    </div>
 
+            <div class="nav-item" id="accordionFlushExample">
+                <div class="">
+                    <a class=" nav-link collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseOne" aria-expanded="false"
+                        aria-controls="flush-collapseOne" style=" ">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>Presupuesto</span>
+                    </a>
+                    <div id="flush-collapseOne" class="collapse" style="background-color: #3a5dbfcc; margin:0;"
+                        aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                        <li class="nav-item">
+                            <a class="nav-link text-center" href="{{ route('vigencia.create') }}"
+                                ><span>Crear Vigencia</span> </a>
+                        </li>
+                    </div>
                 </div>
+            </div>
 
 
 

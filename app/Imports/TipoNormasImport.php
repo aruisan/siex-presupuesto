@@ -4,9 +4,8 @@ namespace App\Imports;
 
 use App\TipoDeNorma;
 use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class TipoNormasImport implements ToModel, WithHeadingRow
+class TipoNormasImport implements ToModel
 {
     /**
     * @param array $row
@@ -14,11 +13,18 @@ class TipoNormasImport implements ToModel, WithHeadingRow
     * @return \Illuminate\Database\Eloquent\Model|null
     */
 
+    public function  __construct(string $vigencia) {
+        $this->vigencia = $vigencia;
+    }
+
     public function model(array $row)
     {
-        return new TipoDeNorma([
-            'codigo' => $row['codigo'],
-            'descripcion' => $row['descripcion']
-        ]);
+        if(!is_null($row[0])):
+            return new TipoDeNorma([
+                'codigo' => isset($row[0]) ? $row[0] : '',
+                'descripcion' => isset($row[1]) ? $row[1] : '',
+                'vigencia_id' => $this->vigencia
+            ]);
+        endif;
     }
 }

@@ -20,6 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['web','auth']], function () {
+
     Route::post('importar/tablas', 'ImportarController@importar')->name('importar.tablas');
     Route::get('importar/tablas', 'ImportarController@index')->name('importar.inicio');
 

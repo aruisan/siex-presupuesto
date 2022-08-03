@@ -4,9 +4,8 @@ namespace App\Imports;
 
 use App\PoliticaPublica;
 use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class PoliticaPublicaImport implements ToModel, WithHeadingRow
+class PoliticaPublicaImport implements ToModel
 {
     /**
     * @param array $row
@@ -14,11 +13,18 @@ class PoliticaPublicaImport implements ToModel, WithHeadingRow
     * @return \Illuminate\Database\Eloquent\Model|null
     */
 
+    public function  __construct(string $vigencia) {
+        $this->vigencia = $vigencia;
+    }
+
     public function model(array $row)
     {
+        if(!is_null($row[0])):
             return new PoliticaPublica([
-                'codigo' => $row['codigo'],
-                'descripcion' => $row['descripcion']
+                'codigo' => isset($row[0]) ? $row[0] : '',
+                'descripcion' => isset($row[1]) ? $row[1] : '',
+                'vigencia_id' => $this->vigencia
             ]);
+        endif;
     }
 }

@@ -4,9 +4,8 @@ namespace App\Imports;
 
 use App\BPin;
 use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class BPinImport implements ToModel, WithHeadingRow
+class BPinImport implements ToModel
 {
     /**
     * @param array $row
@@ -16,27 +15,30 @@ class BPinImport implements ToModel, WithHeadingRow
 
     public function  __construct(string $vigencia) {
         $this->vigencia = $vigencia;
-    }   
+    }
 
     public function model(array $row)
     {
-        return new BPin([
-            'cofinanciado' => $row['cofinanciado'],
-            'entidad' => $row['entidad'],
-            'secretaria_id' => $row['secretaria'],
-            'cod_sector' => $row['cod._sector'],
-            'nombre_sector' => $row['nombre_sector'],
-            'cod_proyecto' => $row['cod._proyecto'],
-            'nombre_proyecto' => $row['nombre_proyecto'],
-            'metas' => $row['metas'],
-            'actividad' => $row['actividad'],
-            'propios' => $row['propios'],
-            'sgp' => $row['sgp'],
-            'total' => $row['total'],
-            'cod_producto' => $row['cod._producto'],
-            'nombre_producto' => $row['nombre_producto'],
-            'cod_indicador' => $row['cod._indicador'],
-            'nombre_indicador' => $row['nombre_indicador']
-        ]);
+        if(!is_null($row[0])):
+            return new BPin([
+                'cofinanciado' => isset($row[0]) ? $row[0] : '',
+                'entidad' => isset($row[1]) ? $row[1] : '',
+                'secretaria_id' => isset($row[2]) ? $row[2] : '',
+                'cod_sector' => isset($row[3]) ? $row[3] : '',
+                'nombre_sector' => isset($row[4]) ? $row[4] : '',
+                'cod_proyecto' => isset($row[5]) ? $row[5] : '',
+                'nombre_proyecto' => isset($row[6]) ? $row[6] : '',
+                'metas' => isset($row[7]) ? $row[7] : '',
+                'actividad' => isset($row[8]) ? $row[8] : '',
+                'propios' => isset($row[9]) ? $row[9] : '',
+                'sgp' => isset($row[10]) ? $row[10] : '',
+                'total' => isset($row[11]) ? $row[11] : '',
+                'cod_producto' => isset($row[12]) ? $row[12] : '',
+                'nombre_producto' => isset($row[13]) ? $row[13] : '',
+                'cod_indicador' => isset($row[14]) ? $row[14] : '',
+                'nombre_indicador' => isset($row[15]) ? $row[15] : '',
+                'vigencia_id' => $this->vigencia
+            ]);
+        endif;
     }
 }

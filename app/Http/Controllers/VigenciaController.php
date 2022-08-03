@@ -66,22 +66,6 @@ class VigenciaController extends Controller
 
 
 
-
-    public function importar(Request $request){
-
-        $select = $request->select_tabla;
-        if($request->hasFile('file_import')):
-            if($select == 'cpcs'){
-                Excel::import(new CpcImport, $request->file('file_import'));
-
-            }elseif($select == 'secretarias'){
-                Excel::import(new DependenciaImport, $request->file('file_import'));
-            }
-        endif;
-
-        return back();
-    }
-
     public function create(){
 
         return view('presupuesto.vigencia.create');

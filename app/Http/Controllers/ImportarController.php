@@ -75,14 +75,14 @@ class ImportarController extends Controller
 
         $vigencia = $request->vigencia_id;
         $select = $request->select_tabla;
-        
+
         if($request->hasFile('file_import')):
             if($select == 'cpcs'){
                 Excel::import(new CpcImport($vigencia), $request->file('file_import'));
             }elseif($select == 'pucs'){
                 Excel::import(new PucPresupuestoImport($vigencia), $request->file('file_import'));
             }elseif($select == 'fuente de financiacion'){
-                Excel::import(new FuentesDeFinanciacionImpor($vigencia), $request->file('file_import'));
+                Excel::import(new FuentesDeFinanciacionImport($vigencia), $request->file('file_import'));
             }elseif($select == 'politica publica'){
                 Excel::import(new PoliticaPublicaImport($vigencia), $request->file('file_import'));
             }elseif($select == 'producto mga'){

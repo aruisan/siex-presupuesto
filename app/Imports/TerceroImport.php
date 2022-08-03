@@ -4,9 +4,8 @@ namespace App\Imports;
 
 use App\Tercero;
 use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class TerceroImport implements ToModel, WithHeadingRow
+class TerceroImport implements ToModel
 {
     /**
     * @param array $row
@@ -14,11 +13,18 @@ class TerceroImport implements ToModel, WithHeadingRow
     * @return \Illuminate\Database\Eloquent\Model|null
     */
 
+    public function  __construct(string $vigencia) {
+        $this->vigencia = $vigencia;
+    }
+
     public function model(array $row)
     {
-        return new Tercero([
-            'codigo' => $row['codigo'],
-            'entidad' => $row['entidad'],
-        ]);
+        if(!is_null($row[0])):
+            return new Tercero([
+                'codigo' => isset($row[0]) ? $row[0] : '',
+                'entidad' => isset($row[1]) ? $row[1] : '',
+                'vigencia_id' => $this->vigencia
+            ]);
+        endif;
     }
 }

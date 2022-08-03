@@ -13,8 +13,8 @@ class CpcImport implements ToModel
     * @return \Illuminate\Database\Eloquent\Model|null
     */
     public function  __construct(string $vigencia) {
-        $this->vigencia= $vigencia;
-    }   
+        $this->vigencia = $vigencia;
+    }
 
     public function model(array $row)
     {

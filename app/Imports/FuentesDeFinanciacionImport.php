@@ -4,20 +4,27 @@ namespace App\Imports;
 
 use App\FuentesDeFinanciacion;
 use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class FuentesDeFinanciacionImport implements ToModel, WithHeadingRow
+class FuentesDeFinanciacionImport implements ToModel
 {
     /**
     * @param array $row
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
+
+    public function  __construct(string $vigencia) {
+        $this->vigencia = $vigencia;
+    }
+
     public function model(array $row)
     {
-        return new FuentesDeFinanciacion([
-            'codigo' => $row['codigo'],
-            'descripcion' => $row['descripcion']
-        ]);
+        if(!is_null($row[0])):
+            return new FuentesDeFinanciacion([
+                'codigo' => isset($row[0]) ? $row[0] : '',
+                'descripcion' => isset($row[1]) ? $row[1] : '',
+                'vigencia_id' => $this->vigencia
+            ]);
+        endif;
 }
 }
