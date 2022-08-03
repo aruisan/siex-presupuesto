@@ -13,6 +13,11 @@ class BPinImport implements ToModel, WithHeadingRow
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
+
+    public function  __construct(string $vigencia) {
+        $this->vigencia= $vigencia;
+    }   
+
     public function model(array $row)
     {
         return new BPin([

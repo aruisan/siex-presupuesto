@@ -33,8 +33,10 @@ use Illuminate\Support\Facades\Session;
 
 class VigenciaController extends Controller
 {
-    public function presupuesto(){
+    public function presupuesto($id){
 
+
+        $vigencia = $id;
         $pucs = PucPresupuesto::all();
         $cpcs = Cpc::all();
         $fuentes = FuentesDeFinanciacion::all();
@@ -57,7 +59,7 @@ class VigenciaController extends Controller
 
         return view('presupuesto.index', compact(
             'pucs', 'cpcs', 'fuentes', 'politicas','vigencias', 'productos_mga', 'programas_mga', 'detalles_sectoriales', 'seccion_presupuestales', 'seccion_presupuestales_adicionales', 'sectores',
-            'situacion_fondos', 'terceros', 'tipos_normas', 'vigencia_gastos', 'bpins', 'dependencias'
+            'situacion_fondos', 'terceros', 'tipos_normas', 'vigencia_gastos', 'bpins', 'dependencias', 'vigencia'
         ));
 
 

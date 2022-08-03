@@ -4,24 +4,29 @@ namespace App\Imports;
 
 use App\Cpc;
 use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class CpcImport implements ToModel, WithHeadingRow
+class CpcImport implements ToModel
 {
     /**
     * @param array $row
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
+    public function  __construct(string $vigencia) {
+        $this->vigencia= $vigencia;
+    }   
+
     public function model(array $row)
     {
-
-        return new Cpc([
-            'codigo' => $row['codigo'],
-            'clase' => $row['clase'],
-            'seccion' => $row['seccion'],
-            'division' => $row['division']
-        ]);
+        if(!is_null($row[0])):
+            return new Cpc([
+                'codigo' => isset($row[0]) ? $row[0] : '',
+                'clase' => isset($row[1]) ? $row[1] : '',
+                'seccion' => isset($row[2]) ? $row[2] : '',
+                'division' => isset($row[3]) ? $row[3] : '',
+                'vigencia_id' => $this->vigencia
+            ]);
+        endif;
 
     }
 }
