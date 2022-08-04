@@ -41,10 +41,10 @@ class RubroController extends Controller
         $situaciones_de_fondos = SituacionDeFondos::all();
         $terceros = Tercero::all();
         $tipos_de_normas = TipoDeNorma::all();
-        $vigencias_gastos = VigenciaGastos::all(); 
+        $vigencias_gastos = VigenciaGastos::all();
         $dependencias = Dependencia::all();
 
-        
+
 
         return view('rubro.create', compact('dependencias','cpcs' , 'detalles_Sectorial' , 'fuentes_de_financiacion' , 'politicas_publicas' , 'productos_mgas' ,
              'programa_mgas' , 'pucs' , 'secciones_presupuestales' , 'secciones_presupuestales_adicionales' , 'sectores' , 'situaciones_de_fondos' , 'terceros' , 'tipos_de_normas' , 'vigencias_gastos'));

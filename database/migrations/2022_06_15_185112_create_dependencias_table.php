@@ -18,6 +18,7 @@ class CreateDependenciasTable extends Migration
             $table->string('code');
             $table->string('nombre');
             $table->string('encargado');
+            $table->integer('vigencia_id');
             $table->timestamps();
         });
     }

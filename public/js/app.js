@@ -49931,8 +49931,13 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 __webpack_require__(/*! /var/www/siex-presupuesto/resources/js/app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! /var/www/siex-presupuesto/resources/sass/app.scss */"./resources/sass/app.scss");
+=======
+__webpack_require__(/*! C:\xampp\htdocs\siex-presupuesto\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\siex-presupuesto\resources\sass\app.scss */"./resources/sass/app.scss");
+>>>>>>> 7d7d8a254a337ba7bf8c0f9caf364163407b3412
 
 
 /***/ })

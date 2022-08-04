@@ -12,7 +12,7 @@
     <title>SB Admin 2 - Dashboard</title>
 
     <!-- Custom fonts for this template-->
-    <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -20,18 +20,21 @@
     <!-- Custom styles for this datatables-->
     <link href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
     <!-- Custom styles for this select 2-->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.csss" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.csss"
+        rel="stylesheet" />
+    <!-- Custom styles for bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Custom styles for this template-->
-    <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
 
     <style>
-        .select2-container{
-           margin:1px solid black !important;
+        .select2-container {
+            margin: 1px solid black !important;
 
         }
     </style>
-    
+
 
 </head>
 
@@ -70,40 +73,83 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            @if(auth()->user()->dependencia_id == 1)
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('importar.inicio')}}">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Importar Tablas</span>
-                </a>
-            </li>
+            @if (auth()->user()->dependencia_id == 1)
+                {{-- <li class="nav-item">
+                    <a class="nav-link" href="{{ route('importar.inicio') }}">
+                        <i class="fas fa-fw fa-cog"></i>
+                        <span>Importar Tablas</span>
+                    </a>
+                </li> --}}
 
-             <li class="nav-item">
-                <a class="nav-link" href="{{route('rubro.index')}}">
+                {{-- <li class="nav-item">
+                <a class="nav-link" href="{{route('presupuesto.index')}}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Presupuesto</span></a>
-            </li>
-    {{--
-             <li class="nav-item">
+            </li> --}}
+
+                {{-- <div class="btn-group dropend nav-item">
+
+                <a class="nav-link dropdown-toggle dropdown-toggle-split" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span> Presupuesto </span>
+                </a>
+
+                <ul class="dropdown-menu">
+                  <li class="nav-item">
+                    <a class="dropdown-item " href="{{ route('vigencia.create') }}">Crear Vigencia
+                    </a>
+                    </li>
+                </ul>
+            </div> --}}
+
+                <div class="nav-item" id="accordionFlushExample">
+                    <div class="">
+                        <a class=" nav-link collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne"
+                            style=" ">
+                            <i class="fas fa-fw fa-table"></i>
+                            <span>Presupuesto</span>
+                        </a>
+                        <div id="flush-collapseOne" class="collapse" style="background-color: #3a5dbfcc; margin:0;"
+                            aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <li class="nav-item">
+                                <a class="nav-link text-center" href="{{ route('vigencia.create') }}"><span>Crear
+                                        Vigencia</span>
+                                </a>
+                            </li>
+                            @foreach (auth()->user()->vigencias as $item)
+                                <li class="nav-item">
+                                    <a class="nav-link text-center"
+                                        href="{{ route('presupuesto.historial', $item->id) }}"><span>
+                                            {{ $item->vigencia }} de {{ $item->type }}</span>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+
+
+
+                {{-- <li class="nav-item">
                 <a class="nav-link" href="{{route('bpin.index')}}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Bpin</span></a>
-            </li>
-    --}}
+            </li> --}}
             @endif
 
-             <li class="nav-item">
-                <a class="nav-link" href="{{route('cdp.index')}}">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('cdp.index') }}">
                     <i class="fas fa-fw fa-briefcase"></i>
                     <span>Solicitud cdps</span></a>
             </li>
 
-            @if(auth()->user()->cdp1 || auth()->user()->cdp2)
-             <li class="nav-item">
-                <a class="nav-link" href="{{route('cdp.autorizaciones')}}">
-                    <i class="fas fa-fw fa-briefcase"></i>
-                    <span>Autorizar cdps</span></a>
-            </li>
+            @if (auth()->user()->cdp1 || auth()->user()->cdp2)
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('cdp.autorizaciones') }}">
+                        <i class="fas fa-fw fa-briefcase"></i>
+                        <span>Autorizar cdps</span></a>
+                </li>
             @endif
 
 
@@ -128,8 +174,8 @@
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" class="form-control bg-light border-0 small"
+                                placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
                                     <i class="fas fa-search fa-sm"></i>
@@ -187,7 +233,8 @@
                                     </div>
                                     <div>
                                         <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                        <span class="font-weight-bold">A new monthly report is ready to
+                                            download!</span>
                                     </div>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -212,7 +259,8 @@
                                         Spending Alert: We've noticed unusually high spending for your account.
                                     </div>
                                 </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All
+                                    Alerts</a>
                             </div>
                         </li>
 
@@ -232,8 +280,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                            alt="...">
+                                        <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -244,8 +291,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                            alt="...">
+                                        <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -256,20 +302,20 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                            alt="...">
+                                        <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
-                                        <div class="text-truncate">Last month's report looks great, I am very happy with
+                                        <div class="text-truncate">Last month's report looks great, I am very happy
+                                            with
                                             the progress so far, keep up the good work!</div>
                                         <div class="small text-gray-500">Morgan Alvarez · 2d</div>
                                     </div>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                            alt="...">
+                                        <img class="rounded-circle"
+                                            src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div>
@@ -278,7 +324,8 @@
                                         <div class="small text-gray-500">Chicken the Dog · 2w</div>
                                     </div>
                                 </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More
+                                    Messages</a>
                             </div>
                         </li>
 
@@ -289,8 +336,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -308,7 +354,8 @@
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="#" data-toggle="modal"
+                                    data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -372,20 +419,23 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="{{asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Custom scripts for datatables-->
     <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
     <!-- Custom scripts for select 2-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <!-- Custom scripts for Bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+
 
     <!-- Custom scripts for all pages-->
-    <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
+    <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
     @yield('scripts')
 </body>
 

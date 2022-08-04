@@ -14,7 +14,7 @@ class CreateBPinsTable extends Migration
     public function up()
     {
         Schema::create('b_pins', function (Blueprint $table) {
-            $table->bigIncrements('id');  
+            $table->bigIncrements('id');
             $table->string('confinanciado')->nullable();
             $table->string('entidad')->nullable();
             $table->integer('secretaria_id')->nullable();
@@ -31,6 +31,7 @@ class CreateBPinsTable extends Migration
             $table->string('propios')->nullable();
             $table->string('sgp')->nullable();
             $table->string('total')->nullable();
+            $table->integer('vigencia_id');
             $table->timestamps();
         });
 
