@@ -23,7 +23,8 @@ Route::group(['middleware' => ['web','auth']], function () {
 
     Route::post('importar/tablas', 'ImportarController@importar')->name('importar.tablas');
     Route::get('importar/tablas', 'ImportarController@index')->name('importar.inicio');
-
+    
+    Route::post('exportar/tablas', 'ImportarController@exportar')->name('exportar.tablas');
 
     Route::get('rubros', 'RubroController@index')->name('rubro.index');
     Route::get('rubros/create', 'RubroController@create')->name('rubro.create');

@@ -11,10 +11,20 @@
                             action="{{ route('importar.tablas') }}">
                             @csrf
                             <select name="select_tabla" id="select_tabla" class="form-control">
-                            </select>
+                            </select><br>
                             <input type="hidden" name="vigencia_id" value="{{ $vigencia }}">
-                            <input class="form-control" name="file_import" type="file" />
-                            <button type="submit" class="btn btn-primary">Importar</button>
+                            <input class="form-control" name="file_import" type="file" /><br>
+                            <div style="display: flex;justify-content: space-between;">
+                                <button type="submit" class="btn btn-primary">Importar</button>
+                            </div>
+                        </form>
+                        <form id="formuilario" method="post" enctype="multipart/form-data"
+                            action="{{ route('exportar.tablas') }}">
+                            @csrf
+                            <input type="hidden" name="table_select" value="" id="exportar_table">
+                            <div style="display: flex;justify-content: end">
+                                <button type="submit" class="btn btn-primary">Template</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -443,6 +453,7 @@
         const select_change = () => {
             $('.row-table').hide();
             let tabla = $('#select_tabla').val();
+            $('#exportar_table').val(tabla);
             let data = tabla.replace(/ /g, '-');
             $(`#row-${data}`).show();
         }
