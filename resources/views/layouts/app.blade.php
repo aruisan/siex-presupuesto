@@ -141,14 +141,14 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('cdp.index') }}">
                     <i class="fas fa-fw fa-briefcase"></i>
-                    <span>Solicitud cdps</span></a>
+                    <span>Solicitudes</span></a>
             </li>
 
             @if (auth()->user()->cdp1 || auth()->user()->cdp2)
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('cdp.autorizaciones') }}">
                         <i class="fas fa-fw fa-briefcase"></i>
-                        <span>Autorizar cdps</span></a>
+                        <span>Autorizaciones</span></a>
                 </li>
             @endif
 
