@@ -121,14 +121,5 @@ class ImportarController extends Controller
         $select = $request->table_select;
 
         return Excel::download(new TemplateExport($select), 'template.xlsx');
-
-      
-   
-       
-        // }elseif($select == 'bpins'){
-        //     Excel::export(new BPinImport($vigencia), $request->file('file_import'));
-        // }elseif($select == 'secretarias'){
-        //     Excel::export(new DependenciaImport($vigencia), $request->file('file_import'));
-        // }
     }
 }

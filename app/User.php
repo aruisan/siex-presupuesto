@@ -41,4 +41,8 @@ class User extends Authenticatable
     public function dependencia(){
         return $this->belongsTo(Dependencia::class, 'dependencia_id');
     }
+
+    public function getVigenciasAttribute(){
+        return Vigencia::all();
+    }
 }

@@ -102,23 +102,32 @@
                 </ul>
             </div> --}}
 
-            <div class="nav-item" id="accordionFlushExample">
-                <div class="">
-                    <a class=" nav-link collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#flush-collapseOne" aria-expanded="false"
-                        aria-controls="flush-collapseOne" style=" ">
-                        <i class="fas fa-fw fa-table"></i>
-                        <span>Presupuesto</span>
-                    </a>
-                    <div id="flush-collapseOne" class="collapse" style="background-color: #3a5dbfcc; margin:0;"
-                        aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                        <li class="nav-item">
-                            <a class="nav-link text-center" href="{{ route('vigencia.create') }}"
-                                ><span>Crear Vigencia</span> </a>
-                        </li>
+                <div class="nav-item" id="accordionFlushExample">
+                    <div class="">
+                        <a class=" nav-link collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne"
+                            style=" ">
+                            <i class="fas fa-fw fa-table"></i>
+                            <span>Presupuesto</span>
+                        </a>
+                        <div id="flush-collapseOne" class="collapse" style="background-color: #3a5dbfcc; margin:0;"
+                            aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <li class="nav-item">
+                                <a class="nav-link text-center" href="{{ route('vigencia.create') }}"><span>Crear
+                                        Vigencia</span>
+                                </a>
+                            </li>
+                            @foreach (auth()->user()->vigencias as $item)
+                                <li class="nav-item">
+                                    <a class="nav-link text-center"
+                                        href="{{ route('presupuesto.historial', $item->id) }}"><span>
+                                            {{ $item->vigencia }} de {{ $item->type }}</span>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
-            </div>
 
 
 
