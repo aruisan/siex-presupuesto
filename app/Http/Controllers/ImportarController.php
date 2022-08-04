@@ -25,6 +25,7 @@ use App\Imports\SectorImport;
 use App\FuentesDeFinanciacion;
 use App\Imports\TerceroImport;
 use Illuminate\Support\Carbon;
+use App\Exports\TemplateExport;
 use App\Imports\TipoNormasImport;
 use App\Imports\DependenciaImport;
 use App\Imports\ProductoMgaImport;
@@ -113,5 +114,12 @@ class ImportarController extends Controller
         endif;
 
         return back();
+    }
+
+    public function exportar(Request $request){
+
+        $select = $request->table_select;
+
+        return Excel::download(new TemplateExport($select), 'template.xlsx');
     }
 }

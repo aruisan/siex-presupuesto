@@ -17,4 +17,8 @@ class Vigencia extends Model
 
     }
 
+    public function getTypeAttribute(){
+        return $this->tipo ? 'Ingresos' : 'Egresos';
+    }
+
 }
