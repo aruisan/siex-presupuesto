@@ -12,6 +12,11 @@ class BPinImport implements ToModel
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
+
+    public function  __construct(string $vigencia) {
+        $this->vigencia = $vigencia;
+    }
+
     public function model(array $row)
     {
         if(!is_null($row[0])):
@@ -31,7 +36,8 @@ class BPinImport implements ToModel
                 'cod_producto' => isset($row[12]) ? $row[12] : '',
                 'nombre_producto' => isset($row[13]) ? $row[13] : '',
                 'cod_indicador' => isset($row[14]) ? $row[14] : '',
-                'nombre_indicador' => isset($row[15]) ? $row[15] : ''
+                'nombre_indicador' => isset($row[15]) ? $row[15] : '',
+                'vigencia_id' => $this->vigencia
             ]);
         endif;
     }

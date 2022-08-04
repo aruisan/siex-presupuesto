@@ -20,6 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['web','auth']], function () {
+
     Route::post('importar/tablas', 'ImportarController@importar')->name('importar.tablas');
     Route::get('importar/tablas', 'ImportarController@index')->name('importar.inicio');
 
@@ -40,4 +41,12 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::post('cdps/autorizar', 'CdpController@autorizar')->name('cdp.autorizar');
 
     Route::get('pubs-padres', 'PubController@padres')->name('pubs.padres');
+
+
+
+    Route::get('presupuesto/{id}', 'VigenciaController@presupuesto')->name('presupuesto.historial');
+
+    Route::get('vigencia/create', 'VigenciaController@create')->name('vigencia.create');
+    Route::post('vigencia', 'VigenciaController@store')->name('vigencia.store');
+
 });

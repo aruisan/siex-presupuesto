@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cdp extends Model
 {
-    protected $fillable = ['valor', 'rubro_id'];
+    protected $fillable = ['valor', 'rubro_id','vigencia_id'];
     protected $table = "pre_cdps";
 
         public function rubro(){

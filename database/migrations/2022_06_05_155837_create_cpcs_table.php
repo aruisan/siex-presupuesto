@@ -19,6 +19,7 @@ class CreateCpcsTable extends Migration
             $table->String('clase', 400)->nullable();
             $table->String('seccion');
             $table->String('division');
+            $table->integer('vigencia_id');
             $table->timestamps();
         });
     }

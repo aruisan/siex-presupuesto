@@ -18,6 +18,7 @@ class CreateProgramaMgasTable extends Migration
             $table->String('codigo', 50)->nullable();
             $table->String('descripcion', 400)->nullable();
             $table->String('sector', 400)->nullable();
+            $table->integer('vigencia_id');
             $table->timestamps();
         });
     }
