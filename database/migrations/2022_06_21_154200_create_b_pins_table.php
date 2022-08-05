@@ -22,7 +22,7 @@ class CreateBPinsTable extends Migration
             $table->string('nombre_sector')->nullable();
             $table->string('cod_proyecto')->nullable();
             $table->string('nombre_proyecto')->nullable();
-            $table->string('actividad')->nullable();
+            $table->text('actividad')->nullable();
             $table->string('metas')->nullable();
             $table->string('cod_producto')->nullable();
             $table->string('nombre_producto')->nullable();

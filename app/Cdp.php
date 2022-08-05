@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Vigencia;
 use Illuminate\Database\Eloquent\Model;
 
 class Cdp extends Model
@@ -21,5 +22,9 @@ class Cdp extends Model
         }else{
             return 'En espera';
         }
+    }
+
+    public function vigencia(){
+        return $this->belongsTo(Vigencia::class);
     }
 }

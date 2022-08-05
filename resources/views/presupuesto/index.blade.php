@@ -12,7 +12,7 @@
                             @csrf
                             <select name="select_tabla" id="select_tabla" class="form-control">
                             </select><br>
-                            <input type="hidden" name="vigencia_id" value="{{ $vigencia }}">
+                            <input type="hidden" name="vigencia_id" value="{{ $vigencia_id }}">
                             <input class="form-control" name="file_import" type="file" /><br>
                             <div style="display: flex;justify-content: space-between;">
                                 <button type="submit" class="btn btn-primary">Importar</button>
@@ -384,9 +384,9 @@
                         <tbody>
                             @foreach ($bpins as $bpin)
                                 <tr>
-                                    <td>{{ $bpin->cofinanciado }}</td>
+                                    <td>{{ $bpin->confinanciado }}</td>
                                     <td>{{ $bpin->entidad }}</td>
-                                    <td>{{ $bpin->secretaria->nombre }}</td>
+                                    <td>{{ $bpin->secretaria_id }}</td>
                                     <td>{{ $bpin->cod_sector }}</td>
                                     <td>{{ $bpin->nombre_sector }}</td>
                                     <td>{{ $bpin->cod_proyecto }}</td>
@@ -438,7 +438,7 @@
         const tablas = [
             'cpcs', 'pucs', 'fuente de financiacion', 'politica publica', 'producto mga', 'programa mga',
             'detalle sectorial', 'seccion presupuestal', 'seccion presupuestal adicional',
-            'sector', 'situacion de fondo', 'tercero', 'tipo de norma', 'vigencia gasto', 'bpins', 'secretarias'
+            'sector', 'situacion de fondo', 'tercero', 'tipo de norma', 'vigencia gastos', 'bpins', 'secretarias'
         ];
         $(document).ready(function() {
             select_load();

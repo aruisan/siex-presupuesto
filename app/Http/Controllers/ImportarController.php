@@ -104,7 +104,7 @@ class ImportarController extends Controller
                 Excel::import(new TerceroImport($vigencia), $request->file('file_import'));
             }elseif($select == 'tipo de norma'){
                 Excel::import(new TipoNormasImport($vigencia), $request->file('file_import'));
-            }elseif($select == 'vigencia gasto'){
+            }elseif($select == 'vigencia gastos'){
                 Excel::import(new VigenciaGastosImport($vigencia), $request->file('file_import'));
             }elseif($select == 'bpins'){
                 Excel::import(new BPinImport($vigencia), $request->file('file_import'));

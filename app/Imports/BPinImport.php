@@ -21,7 +21,7 @@ class BPinImport implements ToModel
     {
         if(!is_null($row[0])):
             return new BPin([
-                'cofinanciado' => isset($row[0]) ? $row[0] : '',
+                'confinanciado' => isset($row[0]) ? $row[0] : '',
                 'entidad' => isset($row[1]) ? $row[1] : '',
                 'secretaria_id' => isset($row[2]) ? $row[2] : '',
                 'cod_sector' => isset($row[3]) ? $row[3] : '',
