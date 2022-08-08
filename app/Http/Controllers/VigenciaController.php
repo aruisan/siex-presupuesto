@@ -35,29 +35,30 @@ class VigenciaController extends Controller
 {
     public function presupuesto($id){
 
-        $vigencia = $id;
-        $pucs = PucPresupuesto::all();
-        $cpcs = Cpc::all();
-        $fuentes = FuentesDeFinanciacion::all();
-        $politicas = PoliticaPublica::all();
-        $productos_mga = ProductoMga::all();
-        $programas_mga = ProgramaMga::all();
-        $detalles_sectoriales = DetalleSectorial::all();
-        $seccion_presupuestales = SeccionPresupuestal::all();
-        $seccion_presupuestales_adicionales = SeccionPresupuestalAdicional::all();
-        $sectores = Sector::all();
-        $situacion_fondos = SituacionDeFondos::all();
-        $terceros = Tercero::all();
-        $tipos_normas = TipoDeNorma::all();
-        $vigencia_gastos = VigenciaGastos::all();
-        $bpins = BPin::all();
-        $dependencias = Dependencia::all();
+        $vigencia_id = $id;
+        $vigencia = Vigencia::find($id);
+        $cpcs = $vigencia->cpcs;
+        $pucs = $vigencia->pucs;
+        $fuentes = $vigencia->fuentes;
+        $politicas = $vigencia->politicas;
+        $productos_mga = $vigencia->productos_mga;
+        $programas_mga = $vigencia->programas_mga;
+        $detalles_sectoriales = $vigencia->detalles_sectoriales;
+        $seccion_presupuestales = $vigencia->seccion_presupuestales;
+        $seccion_presupuestales_adicionales = $vigencia->seccion_presupuestales_adicionales;
+        $sectores = $vigencia->sectores;
+        $situacion_fondos = $vigencia->situacion_fondos;
+        $terceros = $vigencia->terceros;
+        $tipos_normas = $vigencia->tipos_normas;
+        $vigencia_gastos = $vigencia->vigencia_gastos;
+        $bpins = $vigencia->bpins;
+        $dependencias = $vigencia->dependencias;
         $vigencias = Vigencia::all();
         $añoactual = Carbon::now()->year;
         $vigencias = Vigencia::where('vigencia', '=', $añoactual)->get();
 
         return view('presupuesto.index', compact(
-            'pucs', 'cpcs', 'fuentes', 'politicas','vigencias', 'productos_mga', 'programas_mga', 'detalles_sectoriales', 'seccion_presupuestales', 'seccion_presupuestales_adicionales', 'sectores',
+            'pucs', 'cpcs', 'fuentes', 'politicas','vigencias','vigencia_id', 'productos_mga', 'programas_mga', 'detalles_sectoriales', 'seccion_presupuestales', 'seccion_presupuestales_adicionales', 'sectores',
             'situacion_fondos', 'terceros', 'tipos_normas', 'vigencia_gastos', 'bpins', 'dependencias', 'vigencia'
         ));
 

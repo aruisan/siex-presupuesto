@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Vigencia;
 use Illuminate\Database\Eloquent\Model;
 
 class PucPresupuesto extends Model
@@ -20,5 +21,9 @@ class PucPresupuesto extends Model
 
     public function getCodeArrayAttribute(){
         return explode('.', $this->codigo);
+    }
+
+    public function vigencia(){
+        return $this->belongsTo(Vigencia::class);
     }
 }

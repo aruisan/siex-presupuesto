@@ -17,6 +17,9 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
+            $table->integer('dependencia_id');
+            $table->integer('cdp1');
+            $table->integer('cdp2');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

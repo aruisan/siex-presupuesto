@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Vigencia;
 use Illuminate\Database\Eloquent\Model;
 
 class BPin extends Model
@@ -16,5 +17,9 @@ class BPin extends Model
 
     public function secretaria(){
         return $this->belongsTo(Dependencia::class, 'secretaria_id');
+    }
+
+    public function vigencia(){
+        return $this->belongsTo(Vigencia::class);
     }
 }
