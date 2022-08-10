@@ -33,6 +33,16 @@
             margin: 1px solid black !important;
 
         }
+        /*ajuste de crear rubro*/
+        .input-group-text {
+            white-space: normal!important;
+        }
+        .select2{
+            border: solid 1px #d1d3e2!important;
+            border-radius: 0pc 5px 5px 0pc!important;
+
+        }
+
     </style>
 
 
@@ -436,6 +446,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+
     @yield('scripts')
 </body>
 

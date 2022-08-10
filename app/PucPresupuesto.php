@@ -2,12 +2,13 @@
 
 namespace App;
 
+use App\Rubro;
 use App\Vigencia;
 use Illuminate\Database\Eloquent\Model;
 
 class PucPresupuesto extends Model
 {
-    protected $fillable = ['codigo', 'categoria', 'municipio','vigencia_id'];
+    protected $fillable = ['codigo', 'categoria', 'municipio','vigencia_id','rubro_id'];
     protected $table = "pre_puc_presupuestos";
 
 
@@ -25,5 +26,9 @@ class PucPresupuesto extends Model
 
     public function vigencia(){
         return $this->belongsTo(Vigencia::class);
+    }
+
+    public function rubros(){
+        return $this->hasMany(Rubro::class);
     }
 }

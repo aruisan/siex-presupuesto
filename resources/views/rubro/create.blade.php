@@ -3,12 +3,18 @@
 @section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">
+            <div>
+                <a class="btn float-right btn-primary " href="{{ route('rubro.index',$vigencia_id) }}">Rregresar</a>
+            </div>
+
+
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Crear Rubro </div>
                 <div class="card-body">
                    <form  method="post" action="{{route('rubro.store')}}">
                     @csrf
+                    <input type="hidden" name="vigencia_id" value="{{ $vigencia_id }}">
                     <div class="row">
                         <div class="input-group my-2 col-md-12">
                             <label for="" class="input-group-text input_text_label col-sm-5">Selecciona un Puc</label>
@@ -39,7 +45,7 @@
                         <div class="input-group my-2 col-md-12">
                             <label for="" class="input-group-text input_text_label col-sm-5">Selecciona un Detalle Sectorial</label>
                             <select name="detalle_sectorial_id" class="form-control input_text col-sm-7 select2">
-                                @foreach($detalles_Sectorial as $item)
+                                @foreach($detalles_sectoriales as $item)
                                     <option value="{{$item->id}}">{{$item->descripcion}}</option>
                                 @endforeach
                             </select>
@@ -49,7 +55,7 @@
                         <div class="input-group my-2 col-md-12">
                             <label for="" class="input-group-text input_text_label col-sm-5">Selecciona una Fuente de Financiación</label>
                             <select name="fuente_de_financiacion_id" class="form-control input_text col-sm-7 select2">
-                                @foreach($fuentes_de_financiacion as $item)
+                                @foreach($fuentes as $item)
                                     <option value="{{$item->id}}">{{$item->descripcion}}</option>
                                 @endforeach
                             </select>
@@ -59,7 +65,7 @@
                         <div class="input-group my-2 col-md-12">
                             <label for="" class="input-group-text input_text_label col-sm-5">Selecciona una Politica Publica</label>
                             <select name="politica_publica_id" class="form-control input_text col-sm-7 select2">
-                                @foreach($politicas_publicas as $item)
+                                @foreach($politicas as $item)
                                     <option value="{{$item->id}}">{{$item->descripcion}}</option>
                                 @endforeach
                             </select>
@@ -69,7 +75,7 @@
                         <div class="input-group my-2 col-md-12">
                             <label for="" class="input-group-text input_text_label col-sm-5">Selecciona un producto Mga</label>
                             <select name="producto_mga_id" class="form-control input_text col-sm-7 select2">
-                                @foreach($productos_mgas as $item)
+                                @foreach($productos_mga as $item)
                                     <option value="{{$item->id}}">{{$item->descripcion}}</option>
                                 @endforeach
                             </select>
@@ -79,7 +85,7 @@
                         <div class="input-group my-2 col-md-12">
                             <label for="" class="input-group-text input_text_label col-sm-5">Selecciona un programa Mga</label>
                             <select name="programa_mga_id" class="form-control input_text col-sm-7 select2">
-                                @foreach($programa_mgas as $item)
+                                @foreach($programas_mga as $item)
                                     <option value="{{$item->id}}">{{$item->descripcion}}</option>
                                 @endforeach
                             </select>
@@ -145,7 +151,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="input-group my-2 col-md-12">
                             <label for="" class="input-group-text input_text_label col-sm-5">Selecciona una Vigencia de Gastos</label>
                             <select name="vigencia_gasto_id" class="form-control input_text col-sm-7 select2">
@@ -154,7 +160,7 @@
                                 @endforeach
                             </select>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="row">
                         <div class="input-group my-2 col-md-12">
                             <label for="" class="input-group-text input_text_label col-sm-5">Selecciona una Dependencia</label>
@@ -166,7 +172,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <button type="submit" class="btn btn-primary" {{ $validate == false ? 'disabled' : '' }} >Guardar</button>
                     </div>
                    </form>
                 </div>
@@ -181,7 +187,7 @@
     $(document).ready(function(){
         select2();
     });
-    
+
 
     const select2 = () => {
         $('.select2').select2({

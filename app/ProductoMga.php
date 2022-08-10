@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Rubro;
 use App\Vigencia;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,5 +13,9 @@ class ProductoMga extends Model
 
     public function vigencia(){
         return $this->belongsTo(Vigencia::class);
+    }
+
+    public function Rubro(){
+        return $this->hasOne(Rubro::class);
     }
 }

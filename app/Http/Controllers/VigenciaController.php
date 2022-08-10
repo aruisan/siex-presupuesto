@@ -29,14 +29,18 @@ use App\Imports\DependenciaImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\SeccionPresupuestalAdicional;
 use Illuminate\Support\Facades\Session;
-
+use JetBrains\PhpStorm\Pure;
 
 class VigenciaController extends Controller
 {
     public function presupuesto($id){
-
         $vigencia_id = $id;
         $vigencia = Vigencia::find($id);
+        $rubros = $vigencia->rubros;
+        $opciones = true;
+        if (count($rubros) > 0) {
+            $opciones = false;
+        }
         $cpcs = $vigencia->cpcs;
         $pucs = $vigencia->pucs;
         $fuentes = $vigencia->fuentes;
@@ -57,8 +61,10 @@ class VigenciaController extends Controller
         $añoactual = Carbon::now()->year;
         $vigencias = Vigencia::where('vigencia', '=', $añoactual)->get();
 
+
+
         return view('presupuesto.index', compact(
-            'pucs', 'cpcs', 'fuentes', 'politicas','vigencias','vigencia_id', 'productos_mga', 'programas_mga', 'detalles_sectoriales', 'seccion_presupuestales', 'seccion_presupuestales_adicionales', 'sectores',
+            'pucs', 'cpcs', 'fuentes', 'politicas','vigencias','vigencia_id','opciones','productos_mga', 'programas_mga', 'detalles_sectoriales', 'seccion_presupuestales', 'seccion_presupuestales_adicionales', 'sectores',
             'situacion_fondos', 'terceros', 'tipos_normas', 'vigencia_gastos', 'bpins', 'dependencias', 'vigencia'
         ));
 
@@ -117,5 +123,184 @@ class VigenciaController extends Controller
 
 
     }
+
+    public function edit($id){
+
+
+
+    }
+    public function update(Request $request, $id){
+
+        if($request->has('formPuc')){
+            $puc = PucPresupuesto::find($id);
+            // $puc->codigo = $request->input('codigo');
+            $puc->categoria = $request->input('categoria');
+            $puc->municipio = $request->input('municipio');
+            $puc->save();
+        }
+
+        if($request->has('formCpc')){
+            $cpc = Cpc::find($id);
+            // $cpc->codigo = $request->input('codigo');
+            $cpc->clase = $request->input('clase');
+            $cpc->seccion = $request->input('seccion');
+            $cpc->division = $request->input('division');
+            $cpc->save();
+        }
+
+        if($request->has('formFuente')){
+            $fuente = FuentesDeFinanciacion::find($id);
+            // $fuente->codigo = $request->input('codigo');
+            $fuente->descripcion = $request->input('descripcion');
+            $fuente->save();
+        }
+
+        if($request->has('formPolitica')){
+            $politica = PoliticaPublica::find($id);
+            // $politica->codigo = $request->input('codigo');
+            $politica->descripcion = $request->input('descripcion');
+            $politica->save();
+        }
+
+        if($request->has('formProducto')){
+            $producto_mga = ProductoMga::find($id);
+            // $producto_mga->codigo = $request->input('codigo');
+            $producto_mga->descripcion = $request->input('descripcion');
+            $producto_mga->sector = $request->input('sector');
+            $producto_mga->programa = $request->input('programa');
+            $producto_mga->save();
+        }
+
+        if($request->has('formPrograma')){
+            $programa_mga = ProgramaMga::find($id);
+            // $programa_mga->codigo = $request->input('codigo');
+            $programa_mga->descripcion = $request->input('descripcion');
+            $programa_mga->sector = $request->input('sector');
+            $programa_mga->save();
+        }
+
+        if($request->has('formDetalle')){
+            $detalle_sectorial = DetalleSectorial::find($id);
+            // $detalle_sectorial->codigo = $request->input('codigo');
+            $detalle_sectorial->descripcion = $request->input('descripcion');
+            $detalle_sectorial->save();
+        }
+
+        if($request->has('formSeccion')){
+            $seccion_presupuestale = SeccionPresupuestal::find($id);
+            // $seccion_presupuestale->codigo = $request->input('codigo');
+            $seccion_presupuestale->descripcion = $request->input('descripcion');
+            $seccion_presupuestale->save();
+        }
+
+        if($request->has('formSeccionA')){
+            $seccion_presupuestale_adicional = SeccionPresupuestalAdicional::find($id);
+            // $seccion_presupuestale_adicional->codigo = $request->input('codigo');
+            $seccion_presupuestale_adicional->descripcion = $request->input('descripcion');
+            $seccion_presupuestale_adicional->save();
+        }
+
+        if($request->has('formSector')){
+            $Sector = Sector::find($id);
+            // $Sector->codigo = $request->input('codigo');
+            $Sector->descripcion = $request->input('descripcion');
+            $Sector->save();
+        }
+
+        if($request->has('formSituacionF')){
+            $situacion_fondo = SituacionDeFondos::find($id);
+            // $situacion_fondo->codigo = $request->input('codigo');
+            $situacion_fondo->descripcion = $request->input('descripcion');
+            $situacion_fondo->save();
+        }
+
+        if($request->has('formTercero')){
+            $tercero = Tercero::find($id);
+            // $tercero->codigo = $request->input('codigo');
+            $tercero->entidad = $request->input('entidad');
+            $tercero->save();
+        }
+
+        if($request->has('formTipoN')){
+            $tipo_norma = TipoDeNorma::find($id);
+            // $tipo_norma->codigo = $request->input('codigo');
+            $tipo_norma->descripcion = $request->input('descripcion');
+            $tipo_norma->save();
+        }
+
+        if($request->has('formVigenciaG')){
+            $vigencia_gasto = VigenciaGastos::find($id);
+            // $vigencia_gasto->codigo = $request->input('codigo');
+            $vigencia_gasto->descripcion = $request->input('descripcion');
+            $vigencia_gasto->save();
+        }
+
+        if($request->has('formVigenciaG')){
+            $vigencia_gasto = VigenciaGastos::find($id);
+            // $vigencia_gasto->codigo = $request->input('codigo');
+            $vigencia_gasto->descripcion = $request->input('descripcion');
+            $vigencia_gasto->save();
+        }
+
+        if($request->has('formBpin')){
+            $Bpin = BPin::find($id);
+            $Bpin->confinanciado = $request->input('confinanciado');
+            $Bpin->entidad = $request->input('entidad');
+            $Bpin->secretaria_id = $request->input('secretaria_id');
+            $Bpin->cod_sector = $request->input('cod_sector');
+            $Bpin->nombre_sector = $request->input('nombre_sector');
+            $Bpin->cod_proyecto = $request->input('cod_proyecto');
+            $Bpin->nombre_proyecto = $request->input('nombre_proyecto');
+            $Bpin->actividad = $request->input('actividad');
+            $Bpin->metas = $request->input('metas');
+            $Bpin->cod_producto = $request->input('cod_producto');
+            $Bpin->nombre_producto = $request->input('nombre_producto');
+            $Bpin->cod_indicador = $request->input('cod_indicador');
+            $Bpin->nombre_indicador = $request->input('nombre_indicador');
+            $Bpin->propios = $request->input('propios');
+            $Bpin->sgp = $request->input('sgp');
+            $Bpin->total = $request->input('total');
+            $Bpin->save();
+        }
+
+        if($request->has('formDependencia')){
+            $dependencia = Dependencia::find($id);
+            $dependencia->codigo = $request->input('codigo');
+            $dependencia->nombre = $request->input('nombre');
+            $dependencia->encargado = $request->input('encargado');
+            $dependencia->save();
+        }
+
+        return back()->with('update','Presupuesto Editado con Exito');
+
+    }
+
+    public function destroy($id){
+
+
+        Cpc::destroy($id);
+        PucPresupuesto::destroy($id);
+        FuentesDeFinanciacion::destroy($id);
+        PoliticaPublica::destroy($id);
+        ProductoMga::destroy($id);
+        ProgramaMga::destroy($id);
+        DetalleSectorial::destroy($id);
+        SeccionPresupuestal::destroy($id);
+        SeccionPresupuestalAdicional::destroy($id);
+        Sector::destroy($id);
+        SituacionDeFondos::destroy($id);
+        Tercero::destroy($id);
+        TipoDeNorma::destroy($id);
+        BPin::destroy($id);
+        Dependencia::destroy($id);
+        VigenciaGastos::destroy($id);
+
+
+        return back();
+
+
+    }
+
+
 
 }

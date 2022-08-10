@@ -23,12 +23,20 @@ Route::group(['middleware' => ['web','auth']], function () {
 
     Route::post('importar/tablas', 'ImportarController@importar')->name('importar.tablas');
     Route::get('importar/tablas', 'ImportarController@index')->name('importar.inicio');
-    
+
     Route::post('exportar/tablas', 'ImportarController@exportar')->name('exportar.tablas');
 
-    Route::get('rubros', 'RubroController@index')->name('rubro.index');
-    Route::get('rubros/create', 'RubroController@create')->name('rubro.create');
+
+    Route::get('presupuesto/{id}/rubros', 'RubroController@index')->name('rubro.index');
+    Route::get('presupuesto/{id}/rubros/create', 'RubroController@create')->name('rubro.create');
     Route::post('rubros', 'RubroController@store')->name('rubro.store');
+    Route::delete('rubro/{id}', 'RubroController@destroy')->name('rubro.destroy');
+
+
+
+
+
+    // Route::get('rubros', 'RubroController@index')->name('rubro.lista');
 
     Route::get('bpin', 'BPinController@index')->name('bpin.index');
     Route::get('bpin/create', 'BPinController@create')->name('bpin.create');
@@ -49,5 +57,12 @@ Route::group(['middleware' => ['web','auth']], function () {
 
     Route::get('vigencia/create', 'VigenciaController@create')->name('vigencia.create');
     Route::post('vigencia', 'VigenciaController@store')->name('vigencia.store');
+
+
+    Route::delete('presupuesto/{id}', 'VigenciaController@destroy')->name('presupuesto.destroy');
+    Route::get('presupuesto/{id}/edit', 'VigenciaController@edit')->name('presupuesto.edit');
+    Route::put('presupuesto/{id}', 'VigenciaController@update')->name('presupuesto.update');
+
+
 
 });
