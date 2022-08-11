@@ -44,7 +44,7 @@ use App\Imports\SeccionPresupuestalAdicionalImport;
 class ImportarController extends Controller
 {
     public function index($id){
-        // dd($id);
+        dd($id);
         $pucs = PucPresupuesto::all();
         $cpcs = Cpc::all();
         $fuentes = FuentesDeFinanciacion::all();
