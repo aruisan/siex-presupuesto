@@ -2,6 +2,11 @@
 
 namespace App;
 
+use App\Cpc;
+use App\ProductoMga;
+use App\PucPresupuesto;
+use App\DetalleSectorial;
+use App\FuentesDeFinanciacion;
 use Illuminate\Database\Eloquent\Model;
 
 class Rubro extends Model
@@ -15,28 +20,28 @@ class Rubro extends Model
         return $this->belongsTo(Dependencia::class);
     }
 
-    public function detalle_sectorial(){
-        return $this->belongsTo(DetalleSectorial::class, 'detalle_sectorial_id');
+    public function detalles_sectorial(){
+        return $this->belongsTo(DetalleSectorial::class);
     }
 
-    public function puc(){
+    public function pucs(){
         return $this->belongsTo(PucPresupuesto::class, 'pub_presupuesto_id');
     }
 
-    public function cpc(){
-        return $this->belongsTo(Cpc::class, 'cpc_id');
+    public function cpcs(){
+        return $this->hasOne(Cpc::class);
     }
 
-    public function fuente_financiacion(){
-        return $this->belongsTo(FuentesDeFinanciacion::class, 'fuente_de_financiacion_id');
+    public function fuentes(){
+        return $this->belongsTo(FuentesDeFinanciacion::class);
     }
 
     public function politica_publica(){
-        return $this->belongsTo(PoliticaPublica::class, 'politica_publica_id');
+        return $this->belongsTo(PoliticaPublica::class);
     }
 
     public function producto_mga(){
-        return $this->belongsTo(ProductoMga::class, 'producto_mga_id');
+        return $this->belongsTo(ProductoMga::class);
     }
 
     public function programa_mga(){

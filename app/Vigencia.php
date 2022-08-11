@@ -36,6 +36,10 @@ class Vigencia extends Model
         return $this->tipo ? 'Ingresos' : 'Egresos';
     }
 
+    public function rubros(){
+        return $this->hasMany(Rubro::class);
+    }
+
     public function cpcs(){
         return $this->hasMany(Cpc::class);
     }

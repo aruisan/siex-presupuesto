@@ -3,11 +3,19 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('presupuesto.historial', $vigencia->id) }}">Presupuestos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="">Rubros</a>
+            </li>
+        </ul>
+        <div class="col-md-12 mt-5">
             <div class="card">
                 <div class="card-header">Rubros </div>
                 <div class="card-body">
-                    <a href="{{route('rubro.create')}}" class="btn btn-primary">Crear rubro</a>
+                    <a href="{{route('rubro.create',$vigencia->id)}}" class="btn mb-3 btn-primary">Crear rubro</a>
 
                     <div class="table-responsive">
                         <table class="table table-bordered">
@@ -30,15 +38,18 @@
                                 <th>
                                     Saldo
                                 </th>
+                                <th>
+                                    Accion
+                                </th>
                             </thead>
                             <tbody>
                                 @foreach($rubros as $item)
                                     <tr>
                                         <td>
-                                            {{$item->puc->codigo}}
+                                            {{$item->pucs->codigo}}
                                         </td>
                                         <td>
-                                            {{$item->puc->categoria}}
+                                            {{$item->pucs->categoria}}
                                         </td>
                                         <td>
                                             $ {{$item->dependencia->nombre}}
@@ -52,6 +63,13 @@
                                         <td>
                                             $ {{$item->saldo}}
                                         </td>
+                                        <td>
+                                            <form action="{{ route('rubro.destroy',$item->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger" href=""><i class="fa fa-trash"></i>Eliminar</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -62,6 +80,7 @@
         </div>
     </div>
 </div>
+
 @endsection
 
 @section('scripts')

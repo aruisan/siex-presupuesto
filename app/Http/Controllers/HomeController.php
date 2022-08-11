@@ -24,7 +24,7 @@ class HomeController extends Controller
     public function index()
     {
         if(auth()->user()->dependencia_id == 1){
-            return redirect()->route('rubro.index');
+            return redirect()->route('vigencia.create');
         }else{
             return redirect()->route('cdp.index');
         }

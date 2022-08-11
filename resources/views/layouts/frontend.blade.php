@@ -9,14 +9,14 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-    
+
 
         <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.css') }}">
         <link href="{{asset('/assets/datatables-plugins/dataTables.bootstrap.css')}}" rel="stylesheet">
         <link href=" https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet">
-        <link href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css" rel="stylesheet"> 
+        <link href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css" rel="stylesheet">
         <link href="{{asset('/assets/datatables-responsive/dataTables.responsive.css')}}" rel="stylesheet">
-        
+
         <link rel="stylesheet" href="{{ asset('/assets/font-awesome/css/font-awesome.min.css') }}">
         <link rel="stylesheet" href="{{ asset('/css/footer.css') }}">
 
@@ -110,7 +110,7 @@ box-shadow: 0px 10px 9px -1px rgba(156,150,156,1);
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">Politicas</a></li>
-                    
+
                     <li><a data-toggle="modal" data-target="#modal-ingresar"><b>Entrar</b></a></li>
                     <li>
                         <input type="text" class="form-control" placeholder="Buscar" style="margin-top: 7px; border-radius:20px;">
@@ -224,7 +224,7 @@ box-shadow: 0px 10px 9px -1px rgba(156,150,156,1);
                     <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                     <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
                     <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                   
+
                   </ul>
                 </div><!-- /.navbar-collapse -->
               </div><!-- /.container-fluid -->
@@ -264,7 +264,8 @@ box-shadow: 0px 10px 9px -1px rgba(156,150,156,1);
     <script src="{{ asset('/assets/bootstrap/js/bootstrap.min.js') }}"></script>
 
     <!-- DataTables JavaScript -->
-    <script src="{{asset('/assets/datatables/js/jquery.dataTables.min.js')}}"></script> 
+
+    <script src="{{asset('/assets/datatables/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('/assets/datatables-plugins/dataTables.bootstrap.min.js')}}"></script>
 
     <!--data tables-->
@@ -277,7 +278,7 @@ box-shadow: 0px 10px 9px -1px rgba(156,150,156,1);
     <script src="{{ asset('js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit') }}"></script>
-        
+
 
     <!--toast-->
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Rubro;
 use App\Vigencia;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,5 +13,9 @@ class DetalleSectorial extends Model
 
     public function vigencia(){
         return $this->belongsTo(Vigencia::class);
+    }
+
+    public function rubros(){
+        return $this->hasOne(Rubro::class);
     }
 }
