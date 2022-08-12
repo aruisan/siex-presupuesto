@@ -35,13 +35,13 @@
         </tr>
          <tr>
              <td>
-                <input type="text" name="dia" class="form-control"> 
+                <input type="text" name="dia" class="form-control" readonly value="{{date('d')}}"> 
             </td>
              <td>
-                <input type="text" name="mes" class="form-control"> 
+                <input type="text" name="mes" class="form-control" readonly value="{{date('m')}}"> 
             </td>
              <td>
-                <input type="text" name="age" class="form-control"> 
+                <input type="text" name="age" class="form-control" readonly value="{{date('Y')}}"> 
             </td>
             <td>
             </td>
@@ -64,11 +64,8 @@
                 Seleccione la Secretaria
             </td>
              <td colspan="3">
-                <select name="dependencia" class="form-control" id="select_dependencia">
-                    @foreach($dependencias as $dependencia)
-                        <option value="{{$dependencia->id}}">{{$dependencia->nombre}}</option>
-                    @endforeach()
-                </select>
+                <input type="hidden" id="select_dependencia" class="" readonly value="{{auth()->user()->dependencia_id}}">
+                <input type="text"  class="form-control" readonly value="{{auth()->user()->dependencia->nombre}}">
             </td>
             <td>
                 Dependencia
