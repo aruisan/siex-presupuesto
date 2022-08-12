@@ -40,7 +40,18 @@
         .select2{
             border: solid 1px #d1d3e2!important;
             border-radius: 0pc 5px 5px 0pc!important;
+        }
+        /* iconos presupueso dele & edit */
+        .ajuste{
+            height: max-content;
+            width: max-content;
 
+        }
+        .table>:not(caption)>*>* {
+            padding: 0.5rem 0.5rem;
+            background-color: var(--bs-table-bg);
+            border-bottom-width: 0px !important;
+            box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
         }
 
     </style>
@@ -433,7 +444,7 @@
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    {{-- <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script> --}}
 
     <!-- Custom scripts for datatables-->
     <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
