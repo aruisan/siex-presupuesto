@@ -160,46 +160,10 @@
                 </span>
             </td>
         </tr>
-         <tr class="text-center table-secondary">
-            <td colspan="2">
-                CODIGO
-            </td>
-            <td colspan="3">
-                NOMBRE RUBRO
-            </td>
-            <td>
-                DEFINITIVO
-            </td>
-            <td>
-                DISPONIBLE
-            </td>
-            <td>
-                VALOR SOLICITADO
-            </td>
-        </tr>
-        <tr class="text-center">
-            <td colspan="2">
-                <select class="form-control" name="rubro_id" id="rubro">
-                    @foreach($rubros as $rubro)
-                        <option value="{{$rubro->id}}">
-                            {{$rubro->puc->codigo}}
-                        </option>
-                    @endforeach
-                </select>
-            </td>
-            <td colspan="3" id="nombre_rubro">
-                
-            </td>
-            <td id="valor_definitivo_rubro">
-               
-            </td>
-            <td id="valor_disponible_rubro">
-                
-            </td>
-            <td>
-                <input class="form-control valor_solicitar_rubro" type="number" name="valor_solicitar_rubro[]">
-            </td>
-        </tr>
+    </table>
+    <table class="table table-bordered mt-0" id="tabla-actividades-rubro">
+    </table>
+    <table class="table table-bordered">
          <tr>
             <td colspan="8" class="td-titulos table-success text-center">
                 <span class="text-center">
@@ -283,9 +247,9 @@
         const tipo_gasto = () => {
              let data =  $('#tipo_gasto').val();
              if(data == 'Funcionamiento'){
-                $('.modulo_bpin , #tabla-actividades').hide();
+                $('.modulo_bpin , #tabla-actividades, #tabla-actividades-rubro').hide();
              }else{
-                 $('.modulo_bpin , #tabla-actividades').show();
+                 $('.modulo_bpin , #tabla-actividades, #tabla-actividades-rubro').show();
              }
         }
 
@@ -309,7 +273,7 @@
             $('#meta').html(bpin.metas);
             $('#cod_indicador').html(bpin.cod_indicador);
             $('#nombre_indicador').html(bpin.nombre_indicador);
-            $('#tabla-actividades').empty();
+            $('#tabla-actividades, #tabla-actividades-rubro').empty();
 
             let tr_first = `<tr>
                 <td colspan="4">
@@ -323,9 +287,6 @@
                 </td>
                 <td>
                     TOTAL
-                </td>
-                <td>
-                    VALOR A SOLICITAR
                 </td>
             </tr> `;
             $('#tabla-actividades').append(tr_first);
@@ -350,15 +311,78 @@
                     <td>
                       $${total}
                     </td>
-                    <td>
-                        <input class="form-control valor_solicitar" type="number" name="valor_solicitar[]" max="${total}">
-                    </td>
                 </tr>`;
 
                 $('#tabla-actividades').append(item);
             });
 
+            let tr_first_rubro = `<tr>
+                <td colspan="4">
+                 RUBRO
+                </td>
+                <td>
+                    ACTIVIDAD
+                </td>
+                <td>
+                    DEFINITIVO
+                </td>
+                <td>
+                    DISPONIBLE
+                </td>
+                <td>
+                    VALOR SOLICITADO
+                </td>
+            </tr> `;
+            $('#tabla-actividades-rubro').append(tr_first_rubro);
+            
+
+            bpins_select.forEach(e => {
+                let propios = e.propios == '' ? 0 : e.propios;
+                let sgp = e.sgp == '' ? 0 : e.sgp;
+                let total = parseInt(propios)+parseInt(sgp)
+                t_propios = parseInt(t_propios) + parseInt(propios);
+                t_sgp = parseInt(t_sgp) + parseInt(sgp);
+                t_total = parseInt(t_total) + parseInt(total);
+                let item = `<tr>
+                    <td colspan="4">
+                       <input class="form-control" name="rubro_id[]"/>
+                    </td>
+                    <td>
+                     ${e.actividad}
+                    </td>
+                    <td>
+                       $0
+                    </td>
+                    <td>
+                      $0
+                    </td>
+                    <td>
+                        <input class="form-control valor_solicitar" type="number" name="valor_solicitar[]" max="${total}">
+                    </td>
+                </tr>`;
+
+                $('#tabla-actividades-rubro').append(item);
+            });
+
+
+
             let tr_last = `<tr class="table-secondary">
+                <td colspan="4">
+                TOTAL PROYECTO
+                </td>
+                <td>
+                  $${t_propios}
+                </td>
+                <td>
+                  $${t_sgp}
+                </td>
+                <td>
+                  $${t_total}
+                </td>
+            </tr> `;
+            $('#tabla-actividades').append(tr_last);
+
+            let tr_last_rubro = `<tr class="table-secondary">
                 <td colspan="4">
                 TOTAL PROYECTO
                 </td>
@@ -375,7 +399,7 @@
                     $0
                 </td>
             </tr> `;
-            $('#tabla-actividades').append(tr_last);
+            $('#tabla-actividades-rubro').append(tr_last_rubro);
         } 
 
     </script>

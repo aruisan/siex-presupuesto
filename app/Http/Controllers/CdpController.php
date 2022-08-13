@@ -17,7 +17,7 @@ class CdpController extends Controller
     }
 
     public function create(){
-        $bpins = BPin::all();
+        $bpins = BPin::where('secretaria', auth()->user()->dependencia->nombre)->get();
         $dependencias = Dependencia::all();
         $rubros = Rubro::where('dependencia_id', auth()->user()->dependencia_id)->get();
         $rubros_json = Rubro::where('dependencia_id', auth()->user()->dependencia_id)->get()->map(function($e){

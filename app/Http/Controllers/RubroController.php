@@ -41,7 +41,10 @@ class RubroController extends Controller
         $politicas = $vigencia->politicas;
         $productos_mga = $vigencia->productos_mga;
         $programas_mga = $vigencia->programas_mga;
-        $pucs = $vigencia->pucs;
+        $pucs = $vigencia->pucs->filter(function($e){
+           return  $e->hijos->count() == 0;
+        });
+        
         $secciones_presupuestales = $vigencia->seccion_presupuestales;
         $secciones_presupuestales_adicionales = $vigencia->seccion_presupuestales_adicionales;
         $sectores = $vigencia->sectores;
