@@ -124,24 +124,54 @@ class VigenciaController extends Controller
 
     }
 
-    public function edit($id){
+    public function edit($id, $tipo){
 
+        $puc = PucPresupuesto::find($id);
+        $cpc = Cpc::find($id);
+        $fuente = FuentesDeFinanciacion::find($id);
+        $politica = PoliticaPublica::find($id);
+        $producto_mga = ProductoMga::find($id);
+        $programa_mga = ProgramaMga::find($id);
+        $detalle_sectorial = DetalleSectorial::find($id);
+        $seccion_presupuestal = SeccionPresupuestal::find($id);
+        $seccion_presupuestal_adicional = SeccionPresupuestalAdicional::find($id);
+        $sector = Sector::find($id);
+        $situacion_fondo = SituacionDeFondos::find($id);
+        $tercero = Tercero::find($id);
+        $tipo_norma = TipoDeNorma::find($id);
+        $bpin = BPin::find($id);
+        $dependencia = Dependencia::find($id);
 
+        return view('presupuesto.edit', compact('tipo','cpc','puc','fuente','politica','producto_mga','programa_mga','detalle_sectorial',
+        'seccion_presupuestal','seccion_presupuestal_adicional','sector','situacion_fondo','tercero','tipo_norma','bpin','dependencia'));
 
     }
     public function update(Request $request, $id){
 
+
+
+        // dd($vigencia_id);
+
         if($request->has('formPuc')){
+
             $puc = PucPresupuesto::find($id);
-            // $puc->codigo = $request->input('codigo');
+            $vigencia = $puc->vigencia;
+            $vigencia_id = $vigencia->id;
+
+            $puc = PucPresupuesto::find($id);
             $puc->categoria = $request->input('categoria');
             $puc->municipio = $request->input('municipio');
             $puc->save();
         }
 
         if($request->has('formCpc')){
+
             $cpc = Cpc::find($id);
-            // $cpc->codigo = $request->input('codigo');
+            $vigencia = $cpc->vigencia;
+            $vigencia_id = $vigencia->id;
+
+            $cpc = Cpc::find($id);
+            $cpc->codigo = $request->input('codigo');
             $cpc->clase = $request->input('clase');
             $cpc->seccion = $request->input('seccion');
             $cpc->division = $request->input('division');
@@ -149,22 +179,37 @@ class VigenciaController extends Controller
         }
 
         if($request->has('formFuente')){
+
             $fuente = FuentesDeFinanciacion::find($id);
-            // $fuente->codigo = $request->input('codigo');
+            $vigencia = $fuente->vigencia;
+            $vigencia_id = $vigencia->id;
+
+            $fuente = FuentesDeFinanciacion::find($id);
+            $fuente->codigo = $request->input('codigo');
             $fuente->descripcion = $request->input('descripcion');
             $fuente->save();
         }
 
         if($request->has('formPolitica')){
+
             $politica = PoliticaPublica::find($id);
-            // $politica->codigo = $request->input('codigo');
+            $vigencia = $politica->vigencia;
+            $vigencia_id = $vigencia->id;
+
+            $politica = PoliticaPublica::find($id);
+            $politica->codigo = $request->input('codigo');
             $politica->descripcion = $request->input('descripcion');
             $politica->save();
         }
 
         if($request->has('formProducto')){
+
             $producto_mga = ProductoMga::find($id);
-            // $producto_mga->codigo = $request->input('codigo');
+            $vigencia = $producto_mga->vigencia;
+            $vigencia_id = $vigencia->id;
+
+            $producto_mga = ProductoMga::find($id);
+            $producto_mga->codigo = $request->input('codigo');
             $producto_mga->descripcion = $request->input('descripcion');
             $producto_mga->sector = $request->input('sector');
             $producto_mga->programa = $request->input('programa');
@@ -172,65 +217,110 @@ class VigenciaController extends Controller
         }
 
         if($request->has('formPrograma')){
+
             $programa_mga = ProgramaMga::find($id);
-            // $programa_mga->codigo = $request->input('codigo');
+            $vigencia = $programa_mga->vigencia;
+            $vigencia_id = $vigencia->id;
+
+            $programa_mga = ProgramaMga::find($id);
+            $programa_mga->codigo = $request->input('codigo');
             $programa_mga->descripcion = $request->input('descripcion');
             $programa_mga->sector = $request->input('sector');
             $programa_mga->save();
         }
 
         if($request->has('formDetalle')){
+
             $detalle_sectorial = DetalleSectorial::find($id);
-            // $detalle_sectorial->codigo = $request->input('codigo');
+            $vigencia = $detalle_sectorial->vigencia;
+            $vigencia_id = $vigencia->id;
+
+            $detalle_sectorial = DetalleSectorial::find($id);
+            $detalle_sectorial->codigo = $request->input('codigo');
             $detalle_sectorial->descripcion = $request->input('descripcion');
             $detalle_sectorial->save();
         }
 
         if($request->has('formSeccion')){
+
+            $seccion_p = SeccionPresupuestal::find($id);
+            $vigencia = $seccion_p->vigencia;
+            $vigencia_id = $vigencia->id;
+
             $seccion_presupuestale = SeccionPresupuestal::find($id);
-            // $seccion_presupuestale->codigo = $request->input('codigo');
+            $seccion_presupuestale->codigo = $request->input('codigo');
             $seccion_presupuestale->descripcion = $request->input('descripcion');
             $seccion_presupuestale->save();
         }
 
         if($request->has('formSeccionA')){
+
+            $seccion_p_a = SeccionPresupuestalAdicional::find($id);
+            $vigencia = $seccion_p_a->vigencia;
+            $vigencia_id = $vigencia->id;
+
             $seccion_presupuestale_adicional = SeccionPresupuestalAdicional::find($id);
-            // $seccion_presupuestale_adicional->codigo = $request->input('codigo');
+            $seccion_presupuestale_adicional->codigo = $request->input('codigo');
             $seccion_presupuestale_adicional->descripcion = $request->input('descripcion');
             $seccion_presupuestale_adicional->save();
         }
 
         if($request->has('formSector')){
+
+            $sector = Sector::find($id);
+            $vigencia = $sector->vigencia;
+            $vigencia_id = $vigencia->id;
+
             $Sector = Sector::find($id);
-            // $Sector->codigo = $request->input('codigo');
+            $Sector->codigo = $request->input('codigo');
             $Sector->descripcion = $request->input('descripcion');
             $Sector->save();
         }
 
         if($request->has('formSituacionF')){
+
+            $situacion = SituacionDeFondos::find($id);
+            $vigencia = $situacion->vigencia;
+            $vigencia_id = $vigencia->id;
+
             $situacion_fondo = SituacionDeFondos::find($id);
-            // $situacion_fondo->codigo = $request->input('codigo');
+            $situacion_fondo->codigo = $request->input('codigo');
             $situacion_fondo->descripcion = $request->input('descripcion');
             $situacion_fondo->save();
         }
 
         if($request->has('formTercero')){
+
             $tercero = Tercero::find($id);
-            // $tercero->codigo = $request->input('codigo');
+            $vigencia = $tercero->vigencia;
+            $vigencia_id = $vigencia->id;
+
+            $tercero = Tercero::find($id);
+            $tercero->codigo = $request->input('codigo');
             $tercero->entidad = $request->input('entidad');
             $tercero->save();
         }
 
         if($request->has('formTipoN')){
+
+            $tipo = TipoDeNorma::find($id);
+            $vigencia = $tipo->vigencia;
+            $vigencia_id = $vigencia->id;
+
             $tipo_norma = TipoDeNorma::find($id);
-            // $tipo_norma->codigo = $request->input('codigo');
+            $tipo_norma->codigo = $request->input('codigo');
             $tipo_norma->descripcion = $request->input('descripcion');
             $tipo_norma->save();
         }
 
         if($request->has('formVigenciaG')){
+
+            $vigencia_g = VigenciaGastos::find($id);
+            $vigencia = $vigencia_g->vigencia;
+            $vigencia_id = $vigencia->id;
+
             $vigencia_gasto = VigenciaGastos::find($id);
-            // $vigencia_gasto->codigo = $request->input('codigo');
+            $vigencia_gasto->codigo = $request->input('codigo');
             $vigencia_gasto->descripcion = $request->input('descripcion');
             $vigencia_gasto->save();
         }
@@ -243,6 +333,11 @@ class VigenciaController extends Controller
         }
 
         if($request->has('formBpin')){
+
+            $bpin = BPin::find($id);
+            $vigencia = $bpin->vigencia;
+            $vigencia_id = $vigencia->id;
+
             $Bpin = BPin::find($id);
             $Bpin->confinanciado = $request->input('confinanciado');
             $Bpin->entidad = $request->input('entidad');
@@ -264,14 +359,19 @@ class VigenciaController extends Controller
         }
 
         if($request->has('formDependencia')){
+
+            $depe = Dependencia::find($id);
+            $vigencia = $depe->vigencia;
+            $vigencia_id = $vigencia->id;
+
             $dependencia = Dependencia::find($id);
-            $dependencia->codigo = $request->input('codigo');
+            $dependencia->code = $request->input('code');
             $dependencia->nombre = $request->input('nombre');
             $dependencia->encargado = $request->input('encargado');
             $dependencia->save();
         }
 
-        return back()->with('update','Presupuesto Editado con Exito');
+        return redirect()->route('presupuesto.historial', $vigencia_id)->with('update','Presupuesto Editado con Exito');
 
     }
 

@@ -60,7 +60,7 @@ Route::group(['middleware' => ['web','auth']], function () {
 
 
     Route::delete('presupuesto/{id}', 'VigenciaController@destroy')->name('presupuesto.destroy');
-    Route::get('presupuesto/{id}/edit', 'VigenciaController@edit')->name('presupuesto.edit');
+    Route::get('presupuesto/{id}/edit/{tipo}', 'VigenciaController@edit')->name('presupuesto.edit');
     Route::put('presupuesto/{id}', 'VigenciaController@update')->name('presupuesto.update');
 
 
