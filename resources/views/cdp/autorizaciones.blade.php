@@ -25,6 +25,9 @@
                                 <th>
                                     Rechazar
                                 </th>
+                                <th>
+                                    Anular
+                                </th>
                             </thead>
                             <tbody>
                                 @foreach($cdps as $key => $item)
@@ -36,17 +39,23 @@
                                             {{$item->rubro->puc->codigo}} - {{$item->rubro->puc->categoria}}
                                         </td>
                                         @if(auth()->user()->cdp2)
-                                            @if($item->autoriza1 == 2)
+                                            @if(!is_null($item->autorizar1) && is_null($item->autorizar2))
                                              <td>
                                                 <div class="form-check">
-                                                    <input type="radio" class="form-check-input" name="estado[]" value="{{$item->id}}, aprobar" @if($item->autorizar2 != 1) disabled @endif  @if($item->autorizar2 == 2) checked @endif>
+                                                    <input type="checkbox" class="form-check-input checkbox_{{$item->id}}" onclick="change_checkbox({{$item->id}}, 'aprobar')" name="estado[]" value="{{$item->id}}, aprobar" @if($item->autorizar2 == 'aprobar') checked @endif>
                                                     <label class="form-check-label" >Aprobar</label>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-check">
-                                                    <input type="radio" class="form-check-input" name="estado[]" value="{{$item->id}}, rechazar" @if($item->autorizar2 != 1) disabled @endif  @if($item->autorizar2 == 0) checked @endif>
+                                                    <input type="checkbox" class="form-check-input checkbox_{{$item->id}}" onclick="change_checkbox({{$item->id}}, 'rechazar')" name="estado[]" value="{{$item->id}}, rechazar" @if($item->autorizar2 == 'rechazar') checked @endif>
                                                     <label class="form-check-label">Rechazar</label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input checkbox_{{$item->id}}" onclick="change_checkbox({{$item->id}}, 'anular')" name="estado[]" value="{{$item->id}}, anular" @if($item->autorizar2 == 'anular') checked @endif>
+                                                    <label class="form-check-label">Anular</label>
                                                 </div>
                                             </td>
                                             @else
@@ -57,17 +66,23 @@
                                                     En espera...
                                                 </td>
                                             @endif
-                                        @else
+                                        @elseif(is_null($item->autorizar1))
                                              <td>
                                                 <div class="form-check">
-                                                    <input type="radio" class="form-check-input" name="estado[]" value="{{$item->id}}, aprobar" @if($item->autorizar1 != 1) disabled @endif @if($item->autorizar1 == 2) checked @endif>
+                                                    <input type="checkbox" class="form-check-input checkbox_{{$item->id}}" onclick="change_checkbox({{$item->id}}, 'aprobar')" name="estado[]" value="{{$item->id}}, aprobar"  @if($item->autorizar1 == 'aprobar') checked @endif>
                                                     <label class="form-check-label" >Aprobar</label>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-check">
-                                                    <input type="radio" class="form-check-input" name="estado[]" value="{{$item->id}}, rechazar" @if($item->autorizar1 != 1) disabled @endif @if($item->autorizar1 == 0) checked @endif>
+                                                    <input type="checkbox" class="form-check-input checkbox_{{$item->id}}" onclick="change_checkbox({{$item->id}}, 'rechazar')" name="estado[]" value="{{$item->id}}, rechazar"  @if($item->autorizar1 == 'rechazar') checked @endif>
                                                     <label class="form-check-label">Rechazar</label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input checkbox_{{$item->id}}" onclick="change_checkbox({{$item->id}}, 'anular')" name="estado[]" value="{{$item->id}}, anular" @if($item->autorizar1 == 'anular') checked @endif>
+                                                    <label class="form-check-label">Anular</label>
                                                 </div>
                                             </td>
                                         @endif
@@ -91,6 +106,12 @@
 
 @section('scripts')
     <script>
-    
+        const change_checkbox = (id, action) =>{
+            $(`.checkbox_${id}`).each(function() {
+               if($(this).val() != `${id}, ${action}`){
+                    $(this).prop('checked', false);
+               }
+            });
+        }
     </script>
 @endsection

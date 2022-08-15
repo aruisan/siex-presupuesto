@@ -24,12 +24,12 @@ class Rubro extends Model
         return $this->belongsTo(DetalleSectorial::class);
     }
 
-    public function pucs(){
+    public function puc(){
         return $this->belongsTo(PucPresupuesto::class, 'pub_presupuesto_id');
     }
 
-    public function cpcs(){
-        return $this->hasOne(Cpc::class);
+    public function cpc(){
+        return $this->belongsTo(PucPresupuesto::class, 'cpc_id');
     }
 
     public function fuentes(){
@@ -79,6 +79,7 @@ class Rubro extends Model
     public function vigencia_gastos(){
         return $this->belongsTo(VigenciaGastos::class, 'vigencia_gasto_id');
     }
+
     public function cdps(){
         return $this->hasMany(Cdp::class, 'rubro_id');
     }
@@ -93,16 +94,4 @@ class Rubro extends Model
         return $this->valor -$this->suma_cdps;
     }
 
-    public function solicitudes_cdps(){
-        return $this->hasMany(SolicitudCdp::class);
-    }
-
-    public function getDisponibleAttribute(){
-        if($this->solicitudes_cdps->count() > 0 ){
-            return $this->valor - $this->colicitudes_cdps->sum('valor');
-        }else{
-            return $this->valor;
-        }
-
-    }
 }

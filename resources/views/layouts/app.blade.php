@@ -94,7 +94,7 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            @if (auth()->user()->dependencia_id == 1)
+            @if (auth()->user()->dependencia_id != 0)
                 {{-- <li class="nav-item">
                     <a class="nav-link" href="{{ route('importar.inicio') }}">
                         <i class="fas fa-fw fa-cog"></i>

@@ -46,10 +46,10 @@
                                 @foreach($rubros as $item)
                                     <tr>
                                         <td>
-                                            {{$item->pucs->codigo}}
+                                            {{$item->puc->codigo}}
                                         </td>
                                         <td>
-                                            {{$item->pucs->categoria}}
+                                            {{$item->puc->categoria}}
                                         </td>
                                         <td>
                                             $ {{$item->dependencia->nombre}}

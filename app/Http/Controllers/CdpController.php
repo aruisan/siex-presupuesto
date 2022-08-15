@@ -6,6 +6,7 @@ use App\Cdp;
 use App\BPin;
 use App\Rubro;
 use App\Dependencia;
+use App\SolicitudCdp;
 use Illuminate\Http\Request;
 
 class CdpController extends Controller
@@ -29,7 +30,6 @@ class CdpController extends Controller
                 'programa' => $e->programa_mga,
                 'sector' => $e->sector,
                 'valor' => $e->valor,
-                'vigencia_gastos' => $e->vigencia_gastos,
                 'disponible' => $e->disponible
             ];
         });
@@ -37,7 +37,24 @@ class CdpController extends Controller
     }
 
     public function store(Request $request){
-        Cdp::create($request->all());
+        //dd($request->all());
+        $solicitud_cdp = SolicitudCdp::create([
+            'tipo_gasto' => $request->tipo_gasto,
+            'bpin_code'  => $request->bpin_code,
+            'catalogo_cpc' => $request->catalogo_cpc, 
+            'plan_adquisiciones' => $request->adquisiciones, 
+            'objeto' => $request->objeto, 
+            'vigencia_id' => 1,
+            'owner_id' => auth()->id()
+        ]);
+
+        foreach($request->rubro_id as $k => $rubro):
+            $solicitud_cdp->cdps()->create([
+                'bpin_id' => $request->bpin_id[$k],
+                'rubro_id' => $rubro,
+                'valor' => $request->valor_solicitar[$k]
+            ]);
+        endforeach;
         return redirect()->route('cdp.index');
     }
 
@@ -51,9 +68,9 @@ class CdpController extends Controller
             $data = explode(',',$estado);
             $cdp = Cdp::find($data[0]);
             if(auth()->user()->cdp1 && $cdp->autorizar1 == 1){
-                $cdp->autorizar1 = $data[1] == 'aprobar' ? 2 : 0;
+                $cdp->autorizar1 = $data[1];
             }elseif(auth()->user()->cdp2 && $cdp->autorizar1 == 2 && $cdp->autorizar2 == 1){
-                $cdp->autorizar2 =$data[1] == 'aprobar' ? 2 : 0;
+                $cdp->autorizar2 =$data[1];
             }
             $cdp->save();
         }
