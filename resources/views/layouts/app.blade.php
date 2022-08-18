@@ -172,6 +172,11 @@
                         <span>Autorizaciones</span></a>
                 </li>
             @endif
+             <li class="nav-item">
+                    <a class="nav-link" href="{{ route('bpin.index') }}">
+                        <i class="fas fa-fw fa-briefcase"></i>
+                        <span>Proyectos</span></a>
+                </li>
 
 
         </ul>

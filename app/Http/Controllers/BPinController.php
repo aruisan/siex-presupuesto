@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class BPinController extends Controller
 {
     public function index(){
-       $bpins =  BPin::all();
+       $bpins = BPin::where('secretaria', auth()->user()->dependencia->nombre)->get()->unique('cod_proyecto');
        return view('bpin.index', compact('bpins'));
     }
 
@@ -22,4 +22,10 @@ class BPinController extends Controller
         $rubros = Rubro::where('dependencia_id', auth()->user()->dependencia_id)->get();
         return view('bpin.create', compact('rubros'));
     }
+
+    public function show(Bpin $bpin){
+        $bpins = Bpin::where('cod_proyecto', $bpin->cod_proyecto)->get();
+        return view('bpin.show', compact('bpins'));
+    }
+
 }

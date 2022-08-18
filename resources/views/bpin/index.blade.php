@@ -7,38 +7,33 @@
             <div class="card">
                 <div class="card-header">BPins </div>
                 <div class="card-body">
-                    <a href="{{route('bpin.create')}}" class="btn btn-primary">Nuevo Bpin</a>
 
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
                                 <th>
-                                    valor
+                                    Codigo Proyecto
                                 </th>
                                 <th>
-                                    Cod Bpin
+                                    Nombre Proyecto
                                 </th>
                                 <th>
-                                    Proyecto Bpin
-                                </th>
-                                <th>
-                                    rubro
+                                    Ver
                                 </th>
                             </thead>
                             <tbody>
                                 @foreach($bpins as $item)
                                     <tr>
                                         <td>
-                                            $ {{$item->valor}}
-                                        </td>
-                                        <td>
-                                            {{$item->codigo}}
+                                            {{$item->cod_proyecto}}
                                         </td>
                                          <td>
-                                            {{$item->proyecto}}
+                                            {{$item->nombre_proyecto}}
                                         </td>
                                         <td>
-                                           {{$item->rubro->puc->codigo}} - {{$item->rubro->puc->categoria}}
+                                           <a class="btn btn-success" href="{{route('bpin.show', $item->id)}}">
+                                            Ver
+                                           </a>                                           
                                         </td>
                                     </tr>
                                 @endforeach
